@@ -31,7 +31,7 @@ GitHub Repository
 
 ## 📦 安装
 
-### Codex（Windows）
+### Codex Desktop / CLI（Windows）
 
 需要先安装并登录 [GitHub CLI](https://cli.github.com/)：
 
@@ -40,7 +40,7 @@ gh auth login
 gh repo clone hajimi2024/lander "$env:USERPROFILE\.codex\skills\lander"
 ```
 
-### Codex（macOS / Linux）
+### Codex CLI（macOS / Linux）
 
 ```bash
 gh auth login
