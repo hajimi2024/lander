@@ -1,0 +1,4 @@
+interface:
+  display_name: "落地者 Lander"
+  short_description: "GitHub 开源项目识别、分析、安装、部署与交互式落地"
+  default_prompt: "使用 $lander 识别这个 GitHub 仓库，用中文概括官方落地方式，并分阶段引导我完成落地。"
