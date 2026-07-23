@@ -94,14 +94,7 @@
 npx github:hajimi2024/lander
 ```
 
-安装器会先播放 `LANDER` 终端动画：
-
-```text
-──●────●────●────●────●────●──
-   AI Skills for Codex • Cursor • Grok Build
-```
-
-随后交由官方 Skills CLI 显示仓库来源、克隆结果和 `Found 1 skill`，并完成实际安装。私有仓库阶段需要当前电脑已经具备该仓库的 GitHub 访问权限。
+随后进入官方 Skills CLI。它会读取仓库、识别 `lander`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
 
 ## 🧭 交互选择
 
@@ -114,7 +107,7 @@ npx github:hajimi2024/lander
 
 因此，实际界面会随电脑上已安装的 Agent 和用户选择而变化。
 
-## 🔄 更新
+## 🔁 更新
 
 如果 GitHub 仓库中的 `lander` 有新版本，在终端执行：
 

@@ -94,14 +94,7 @@ Run this in your terminal:
 npx github:hajimi2024/lander
 ```
 
-The installer first plays the `LANDER` terminal animation:
-
-```text
-──●────●────●────●────●────●──
-   AI Skills for Codex • Cursor • Grok Build
-```
-
-It then hands control to the official Skills CLI, which displays the source, clone result, and `Found 1 skill` before performing the installation. While the repository is private, the computer must already have GitHub access to it.
+The official Skills CLI then reads the repository, detects `lander`, and confirms the target agent, installation scope, and installation method as needed for the current environment. While the repository remains private, the computer must have GitHub credentials with access to it.
 
 ## 🧭 Interactive Choices
 
@@ -114,7 +107,7 @@ The official Skills CLI decides which prompts are required for the current envir
 
 The exact interface therefore depends on the agents installed on the computer and the user's selections.
 
-## 🔄 Update
+## 🔁 Update
 
 When this repository has a newer version of `lander`, run:
 
