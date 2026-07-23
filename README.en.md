@@ -2,7 +2,7 @@
 
 # 🚀 lander
 
-**Turn a GitHub repository into a runnable, deployable, or importable project with a stable agent workflow**
+**Turn a GitHub repository into a runnable, deployable, or importable project through a controlled workflow**
 
 [简体中文](README.md) · [Install](#-install) · [Update](#-update) · [Usage](#-usage)
 
@@ -12,23 +12,27 @@
 
 ## ✨ What It Does
 
-`lander` gives an agent a decision workflow for approaching an unfamiliar GitHub repository.
+`lander` gives an agent a structured workflow for assessing and executing an unfamiliar GitHub repository.
 
-It first identifies the project shape, then chooses an executable path from the official docs, and only then moves through installation, configuration, access, verification, and handoff. It is useful when you hand a repository to an agent and need a clear route toward a working result.
+It identifies the project shape and official usage path first, selects a route for the target environment, and then handles configuration, execution, access, verification, and handoff in stages. The first round is analysis-only: it does not install dependencies, connect to a server, or change the environment.
 
 **How It Works**
 
 - 🔎 **Repository assessment**
 
-  Reads README files, install docs, Compose files, Dockerfiles, package manifests, and environment examples to classify apps, services, CLIs, Skills, MCPs, browser extensions, and other repositories that need special handling.
+  Reads README files, official docs, installation instructions, Compose files, Dockerfiles, package manifests, and environment examples to determine the project type, official entrypoint, dependencies, and resource profile.
 
 - 🧭 **Route selection**
 
-  Chooses only from officially supported paths. It prefers the route with fewer dependencies, steadier operations, and lower risk; when direct use is enough, it does not default to development or build workflows.
+  Chooses only from officially supported paths. It prefers a stable route with fewer dependencies and lower operational risk; when direct use satisfies the goal, it does not default to development or build workflows.
+
+- 🔐 **Sensitive configuration warnings**
+
+  Identifies environment variables, API keys, tokens, account credentials, private keys, default credentials, and production settings required by official sources. The agent reports names, purposes, and storage locations without asking the user to paste real values into the conversation.
 
 - 🖥️ **Environment preflight**
 
-  Runs read-only checks for CPU, memory, disk, Docker, ports, proxies, and certificate systems before touching remote hosts or long-running environments.
+  Checks CPU, memory, disk, Docker, ports, proxies, and certificate systems before changing a remote host or long-running environment.
 
 - ✅ **Stage-by-stage verification**
 
@@ -36,60 +40,69 @@ It first identifies the project shape, then chooses an executable path from the 
 
 - 📝 **Handoff records**
 
-  Creates concise, private-by-default, redacted deployment records at the right lifecycle points. These records are for maintenance and are not published to GitHub or public channels automatically.
+  Creates concise, private-by-default, redacted deployment records at defined lifecycle points. They are not published to GitHub or public channels automatically.
 
 **Best-fit repositories**
 
 - 🐳 **Docker / Compose self-hosted services**
 
-  Works well for panels, API services, web apps, database-backed stacks, and personal tools. `lander` checks Docker, containers, ports, mounts, resources, and health before bringing services up.
+  Suitable for API services, web apps, database-backed stacks, and personal tools. Before startup, `lander` checks Compose, ports, mounts, permissions, persistence, and secret injection; after startup, it verifies container health and application responses.
 
-- 🌐 **Web services, backend services, and full-stack apps**
+- 🌐 **Web, backend, and full-stack applications**
 
-  Works well for frontend/backend projects with a documented startup path. `lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
+  Suitable for projects whose official documentation defines the runtime entrypoint, dependencies, and configuration. `lander` selects local execution, Docker, VPS, or another supported route based on the target environment.
 
 - 📌 **Long-running VPS services**
 
-  Useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. `lander` confirms the current ingress and certificate systems first, so a new service does not disrupt what is already running.
+  Suitable for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. It confirms the current ingress and certificate systems before making changes.
 
 - 💻 **Local trial runs**
 
-  Useful when you want to get a small service, CLI, or developer tool running on your current machine or inside WSL2 first. `lander` confirms the official command and required environment before deciding whether to install dependencies, start a service, or switch to a Linux environment.
+  Suitable for small services, CLIs, and developer tools that should run on the current computer or in WSL2 first. `lander` confirms the official command and required environment before installation or startup.
 
 - 🧩 **Agent / MCP / browser extension / CLI tools**
 
-  Works well for tool repositories with a clear install entrypoint. `lander` confirms where to install it, which command to use, and how to verify it; for ordinary attachments or manual-upload projects, it only identifies the path and does not treat them as deployment tasks.
+  Suitable for tool repositories with a clear official installation entrypoint. `lander` identifies the destination, official command, and minimum verification path without treating ordinary attachments or manual uploads as server deployments.
 
-`SKILL.md` stays intentionally thin. It carries the main workflow and routing rules, while task-specific details live in first-level `references/` files that are loaded only when needed.
+`SKILL.md` stays thin. It carries the main workflow, safety gates, and routing rules, while detailed guidance lives in first-level `references/` files.
 
 ## 📦 Install
 
-Start the interactive Skills CLI installer:
+Run this in your terminal:
 
 ```powershell
-npx skills@latest add hajimi2024/lander -g
+npx github:hajimi2024/lander
 ```
 
-After installation, restart the target agent or start a new task if it does not discover newly installed skills immediately.
+The installer first plays the `LANDER` terminal animation:
 
-## 🔄 Update
-
-When this GitHub repository has a newer version of `lander`, run this in your terminal:
-
-```powershell
-npx skills@latest update lander -g
+```text
+──●────●────●────●────●────●──
+   AI Skills for Codex • Cursor • Grok Build
 ```
 
-This updates the globally installed `lander`. If you originally chose Project scope, run it from that project directory and replace `-g` with `-p`.
+It then hands control to the official Skills CLI, which displays the source, clone result, and `Found 1 skill` before performing the installation. While the repository is private, the computer must already have GitHub access to it.
 
 ## 🧭 Interactive Choices
 
-The Skills CLI will guide you through these choices:
+The official Skills CLI decides which prompts are required for the current environment:
 
-- **Skill**: choose `lander`.
-- **Agent**: choose the agents you actually use, such as `codex`, `claude-code`, `cursor`, or `opencode`. The complete list is maintained by the current Skills CLI release.
-- **Scope**: Global is the recommended default because `lander` is useful across repositories and projects. Choose Project only when a repository should carry its own fixed skill installation.
-- **Method**: Symlink is the recommended default because it is easier to update. Choose Copy when symlinks are unavailable, you need a fixed snapshot, or you are preparing a team handoff.
+- **Skill**: this repository contains only `lander`, so the single discovered skill is used directly.
+- **Agent**: multiple detected agents produce a selection list; one detected agent may be selected automatically. The complete list is maintained by Skills CLI.
+- **Scope**: Project / Global is prompted when the scope was not fixed by a flag and the selected agent supports global installation.
+- **Method**: Symlink / Copy is prompted when multiple distinct install directories are involved; a single directory may use Copy directly.
+
+The exact interface therefore depends on the agents installed on the computer and the user's selections.
+
+## 🔄 Update
+
+When this repository has a newer version of `lander`, run:
+
+```powershell
+npx skills@latest update lander
+```
+
+Without a fixed scope, Skills CLI resolves or prompts for Project / Global based on the current environment. Restart the target agent or start a new task if the update is not discovered immediately.
 
 ## 💬 Usage
 
@@ -99,31 +112,33 @@ Invoke it explicitly:
 /lander analyze and deploy https://github.com/owner/repository
 ```
 
-Only identify and plan, without changing the environment:
+Identify and plan only:
 
 ```text
-/lander inspect https://github.com/owner/repository. First round only: analyze, do not modify the environment.
+/lander inspect https://github.com/owner/repository. First round only: analyze and do not modify the environment.
 ```
 
-Deploy to a VPS with a read-only preflight first:
+Deploy to a VPS with a read-only preflight:
 
 ```text
-/lander deploy https://github.com/owner/repository to my VPS, and run a read-only preflight check first.
+/lander deploy https://github.com/owner/repository to my VPS and run a read-only preflight first.
 ```
 
-Natural language also works. If the task involves recognizing, installing, deploying, validating, or importing a GitHub project, the agent can choose `lander` automatically.
+Natural language also works. For tasks involving GitHub project assessment, installation, deployment, verification, or import, an agent can select `lander` from its Skill description.
 
 ## 🛡️ Safety Boundaries
 
-- Do not guess passwords, tokens, API keys, domains, target paths, or paid-service choices.
-- Treat "check only" as read-only and do not modify the target environment.
-- Do not disable firewalls, stop all containers, delete certificates, or replace existing proxy/certificate systems without an explicit plan and confirmation.
-- Keep deployment records private by default and out of GitHub, issues, PRs, releases, and CI artifacts.
-- When a deployment record must be shared publicly, keep the private original and generate a separately redacted public copy.
+- Do not guess passwords, tokens, API keys, domains, paths, exposure scope, or paid-service choices.
+- Do not ask users to send real secrets in the conversation; advise immediate revocation or rotation when one is exposed.
+- Treat "check only" as read-only.
+- Do not expose a service publicly while default credentials, debug mode, or an unprotected administration interface remain.
+- Do not disable firewalls, stop all containers, delete certificates, or replace existing proxy/certificate systems without an explicit plan.
+- Keep deployment records private and out of GitHub, issues, PRs, releases, and CI artifacts by default.
+- Generate a separate redacted copy when information must be shared publicly.
 
 ## 🗂️ Structure
 
-This is a single Skill repository. The root `SKILL.md` is the installable skill entrypoint.
+This is a single Skill repository. The root `SKILL.md` is the installable entrypoint. The terminal wrapper only adds the animation and delegates to the official Skills CLI.
 
 ```text
 lander/
@@ -131,12 +146,14 @@ lander/
 ├── README.md
 ├── README.en.md
 ├── agents/
-│   └── openai.yaml
+├── assets/templates/
+├── bin/
+│   └── lander.mjs
 ├── references/
 ├── scripts/
 │   └── preflight.sh
-└── assets/
-    └── templates/
+├── tests/
+└── package.json
 ```
 
 ## 📄 License

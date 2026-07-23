@@ -1,0 +1,27 @@
+{
+  "name": "lander-installer",
+  "version": "0.0.0-private",
+  "description": "Animated installer entrypoint for the lander Agent Skill",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "lander": "./bin/lander.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "agents",
+    "assets",
+    "bin",
+    "references",
+    "scripts"
+  ],
+  "scripts": {
+    "test": "node tests/validate.mjs && node --test tests/installer.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
