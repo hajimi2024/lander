@@ -12,17 +12,33 @@
 
 ## ✨ What It Does
 
-`lander` is built for a common failure point: you give an agent a GitHub repository, and it must first understand what the project is, how the maintainers expect it to be used, where it should run, and only then move into installation, configuration, verification, and handoff.
+`lander` is not a stack-specific collection of fixed tutorials. It gives an agent a decision workflow for approaching an unfamiliar GitHub repository.
 
-Its core strength is separating repository analysis from environment changes. The agent reads the official sources first, chooses a confirmed route, and proceeds in stages instead of immediately installing dependencies, pulling images, editing servers, or exposing services.
+It first identifies the project shape, then chooses an executable path from the official docs, and only then moves through installation, configuration, access, verification, and handoff. It is useful when you hand a repository to an agent and need a clear route toward a working result.
+
+**Core workflow**
 
 - 🔎 **Repository assessment**: reads README files, install docs, Compose files, Dockerfiles, package manifests, and environment examples to classify apps, services, CLIs, templates, plugins, Skills, MCPs, and browser extensions.
+
 - 🧭 **Route selection**: chooses the lowest-risk official path that satisfies the goal; when direct use is enough, it does not default to development or build workflows.
-- 🧩 **Multiple landing paths**: routes work across local machines, WSL2, remote Linux hosts, VPS targets, Docker/Compose, native installs, and importable artifacts.
+
 - 🖥️ **Environment preflight**: runs read-only checks for CPU, memory, disk, Docker, ports, proxies, and certificate systems before touching remote or long-running environments.
-- 🌐 **Access and certificate coexistence**: handles SSH tunnels, public ingress, reverse proxies, HTTPS, DNS-01, renewal migration, and existing sites without disrupting unrelated services.
+
 - ✅ **Stage-by-stage verification**: validates real outcomes after each step, including processes, containers, ports, HTTP/API responses, persistence, and the health of existing services.
+
 - 📝 **Handoff records**: creates concise, private-by-default, redacted deployment records at the right lifecycle points, without publishing them to GitHub or public channels automatically.
+
+**Best-fit repositories**
+
+- 🐳 **Docker / Compose self-hosted services**: works well for panels, API services, web apps, database-backed stacks, and personal tools. `lander` checks Docker, containers, ports, mounts, resources, and health before bringing services up.
+
+- 🌐 **Web services, backend services, and full-stack apps**: it does not force Node, Python, Go, Rust, or PHP projects into a fixed template. It follows the repository's own README, install docs, environment examples, and startup path first.
+
+- 🖥️ **Long-running VPS services**: it has dedicated rules for public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites, so a new service does not disrupt what is already running.
+
+- 💻 **Local machine / WSL2 projects**: it separates direct use from source development. When a project can run or be imported directly, it does not default to dependency installation and build workflows.
+
+- 🧩 **Importable artifacts**: suitable for Agent Skills, MCPs, browser extensions, WordPress plugins, templates, plugins, and CLIs. It follows the official install or import entrypoint instead of forcing a server deployment flow.
 
 `SKILL.md` stays intentionally thin. It carries the main workflow and routing rules, while task-specific details live in first-level `references/` files that are loaded only when needed.
 
