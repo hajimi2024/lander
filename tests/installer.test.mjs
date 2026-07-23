@@ -17,8 +17,8 @@ test("banner contains the requested identity and subtitle", () => {
 
 test("installer delegates to the official Skills CLI without forcing global scope", () => {
   assert.deepEqual(buildSkillsCommand([], "win32"), {
-    executable: "npx.cmd",
-    args: ["skills@latest", "add", "hajimi2024/lander-new"]
+    executable: "cmd.exe",
+    args: ["/d", "/s", "/c", "npx.cmd", "skills@latest", "add", "hajimi2024/lander-new"]
   });
   assert.deepEqual(buildSkillsCommand(["--copy"], "linux"), {
     executable: "npx",
@@ -26,8 +26,8 @@ test("installer delegates to the official Skills CLI without forcing global scop
   });
 });
 
-test("installer uses shell execution for Windows command shims", () => {
-  assert.equal(buildSpawnOptions("win32", {}).shell, true);
+test("installer avoids shell execution when launching command shims", () => {
+  assert.equal(buildSpawnOptions("win32", {}).shell, false);
   assert.equal(buildSpawnOptions("linux", {}).shell, false);
 });
 

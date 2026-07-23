@@ -35,16 +35,24 @@ export function supportsAnimation(env = process.env, stdout = process.stdout) {
 }
 
 export function buildSkillsCommand(extraArgs = [], platform = process.platform) {
+  const skillsArgs = ["skills@latest", "add", SOURCE, ...extraArgs];
+  if (platform === "win32") {
+    return {
+      executable: "cmd.exe",
+      args: ["/d", "/s", "/c", "npx.cmd", ...skillsArgs]
+    };
+  }
+
   return {
-    executable: platform === "win32" ? "npx.cmd" : "npx",
-    args: ["skills@latest", "add", SOURCE, ...extraArgs]
+    executable: "npx",
+    args: skillsArgs
   };
 }
 
 export function buildSpawnOptions(platform = process.platform, env = process.env) {
   return {
     stdio: "inherit",
-    shell: platform === "win32",
+    shell: false,
     env
   };
 }
