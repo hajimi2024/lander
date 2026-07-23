@@ -28,28 +28,10 @@ Its core strength is separating repository analysis from environment changes. Th
 
 ## 📦 Install
 
-Install with the Skills CLI:
+Start the interactive Skills CLI installer:
 
 ```powershell
 npx skills@latest add hajimi2024/lander -g
-```
-
-List the available skill without installing:
-
-```powershell
-npx skills@latest add hajimi2024/lander --list
-```
-
-Install only for Codex and skip prompts:
-
-```powershell
-npx skills@latest add hajimi2024/lander -g -a codex --skill lander -y
-```
-
-Install a copied snapshot instead of a symlink:
-
-```powershell
-npx skills@latest add hajimi2024/lander -g -a codex --skill lander --copy -y
 ```
 
 After installation, restart the target agent or start a new task if it does not discover newly installed skills immediately.
