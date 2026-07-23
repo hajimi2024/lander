@@ -4,13 +4,7 @@
 
 **Turn a GitHub repository into a runnable, deployable, or importable project with a stable agent workflow**
 
-[![Skills CLI](https://img.shields.io/badge/Skills%20CLI-compatible-2563eb)](https://github.com/vercel-labs/skills)
-[![Skill](https://img.shields.io/badge/single%20skill-lander-16a34a)](SKILL.md)
-[![Agents](https://img.shields.io/badge/agents-via%20Skills%20CLI-111827)](https://github.com/vercel-labs/skills)
-[![License](https://img.shields.io/badge/license-pending-lightgrey)](#-license)
-
-<a href="README.md"><img alt="简体中文" src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-switch-2563eb?style=for-the-badge"></a>
-<img alt="English" src="https://img.shields.io/badge/English-current-111827?style=for-the-badge">
+[简体中文](README.md) · [Skills CLI](https://github.com/vercel-labs/skills) · [Install](#-install) · [Usage](#-usage)
 
 </div>
 
