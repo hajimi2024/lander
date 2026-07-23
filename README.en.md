@@ -18,15 +18,17 @@
 
 ## ✨ What It Does
 
-`lander` is an Agent Skill for GitHub projects. It helps an agent read official documentation, classify the project, choose a stable path, and move through installation, deployment, verification, and handoff in stages.
+`lander` is built for a common failure point: you give an agent a GitHub repository, and it must first understand what the project is, how the maintainers expect it to be used, where it should run, and only then move into installation, configuration, verification, and handoff.
 
-- 📖 Reads README files, install docs, Docker/Compose files, package manifests, and environment examples when relevant.
-- 🧭 Classifies a repository as runnable, deployable, or importable before choosing a route.
-- 🪶 Prefers official paths with fewer dependencies, simpler operations, and lower operational risk.
-- 🖥️ Runs read-only preflight checks before touching VPS, WSL2, or remote Linux environments.
-- 🌐 Handles private access, SSH tunnels, domains, reverse proxies, HTTPS, and certificate renewal coexistence.
-- 🧩 Recognizes templates, plugins, Skills, MCPs, browser extensions, and other importable artifacts.
-- 📝 Creates concise, private-by-default, redacted deployment records at the right lifecycle points.
+Its core strength is separating repository analysis from environment changes. The agent reads the official sources first, chooses a confirmed route, and proceeds in stages instead of immediately installing dependencies, pulling images, editing servers, or exposing services.
+
+- 🔎 **Repository assessment**: reads README files, install docs, Compose files, Dockerfiles, package manifests, and environment examples to classify apps, services, CLIs, templates, plugins, Skills, MCPs, and browser extensions.
+- 🧭 **Route selection**: chooses the lowest-risk official path that satisfies the goal; when direct use is enough, it does not default to development or build workflows.
+- 🧩 **Multiple landing paths**: routes work across local machines, WSL2, remote Linux hosts, VPS targets, Docker/Compose, native installs, and importable artifacts.
+- 🖥️ **Environment preflight**: runs read-only checks for CPU, memory, disk, Docker, ports, proxies, and certificate systems before touching remote or long-running environments.
+- 🌐 **Access and certificate coexistence**: handles SSH tunnels, public ingress, reverse proxies, HTTPS, DNS-01, renewal migration, and existing sites without disrupting unrelated services.
+- ✅ **Stage-by-stage verification**: validates real outcomes after each step, including processes, containers, ports, HTTP/API responses, persistence, and the health of existing services.
+- 📝 **Handoff records**: creates concise, private-by-default, redacted deployment records at the right lifecycle points, without publishing them to GitHub or public channels automatically.
 
 `SKILL.md` stays intentionally thin. It carries the main workflow and routing rules, while task-specific details live in first-level `references/` files that are loaded only when needed.
 
