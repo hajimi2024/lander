@@ -4,7 +4,7 @@
 
 **把 GitHub 仓库稳定落地为可运行、可部署、可导入的项目**
 
-[English](README.en.md) · [Skills CLI](https://github.com/vercel-labs/skills) · [安装](#-安装) · [使用方式](#-使用方式)
+[English](README.en.md) · [安装](#-安装) · [使用方式](#-使用方式)
 
 </div>
 
