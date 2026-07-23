@@ -20,12 +20,13 @@
    AI Skills for Codex • Cursor • Grok Build
 ```
 
-![Codex Skill](https://img.shields.io/badge/Codex-Skill-d1008f?style=flat-square)
-![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-168aad?style=flat-square)
-![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-d97706?style=flat-square)
-![OpenCode Compatible](https://img.shields.io/badge/OpenCode-Compatible-16a34a?style=flat-square)
-![Single Skill](https://img.shields.io/badge/Repository-Single_Skill-2563eb?style=flat-square)
-![Security Guided](https://img.shields.io/badge/Deployment-Security_Guided-111827?style=flat-square)
+![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)
+![GitHub Repository Analysis](https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square)
+![Deployment Targets](https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square)
+![Deployment Routes](https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square)
+![Guided Workflow](https://img.shields.io/badge/Workflow-Guided_Deployment-d97706?style=flat-square)
+![Security Preflight](https://img.shields.io/badge/Security-Preflight_First-b91c1c?style=flat-square)
+![Single Skill](https://img.shields.io/badge/Repository-Single_Skill-4f46e5?style=flat-square)
 
 ---
 

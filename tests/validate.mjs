@@ -38,12 +38,13 @@ const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 ${DIVIDER}
    ${TAGLINE}`;
 const readmeBadges = [
-  "Codex-Skill-d1008f",
-  "Cursor-Compatible-168aad",
-  "Claude_Code-Compatible-d97706",
-  "OpenCode-Compatible-16a34a",
-  "Repository-Single_Skill-2563eb",
-  "Deployment-Security_Guided-111827"
+  "lander-Agent_Skill-d1008f",
+  "GitHub-Repository_Analysis-168aad",
+  "Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a",
+  "Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2",
+  "Workflow-Guided_Deployment-d97706",
+  "Security-Preflight_First-b91c1c",
+  "Repository-Single_Skill-4f46e5"
 ];
 
 const assertions = [
