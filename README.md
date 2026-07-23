@@ -28,28 +28,10 @@
 
 ## 📦 安装
 
-使用 Skills CLI 安装：
+使用 Skills CLI 进入交互式安装流程：
 
 ```powershell
 npx skills@latest add hajimi2024/lander -g
-```
-
-查看仓库里可安装的 Skill：
-
-```powershell
-npx skills@latest add hajimi2024/lander --list
-```
-
-只安装到 Codex，并跳过交互确认：
-
-```powershell
-npx skills@latest add hajimi2024/lander -g -a codex --skill lander -y
-```
-
-安装为复制快照，而不是软链接：
-
-```powershell
-npx skills@latest add hajimi2024/lander -g -a codex --skill lander --copy -y
 ```
 
 安装后，如果 Agent 没有立即发现新 Skill，请重启目标 Agent 或新建任务。
