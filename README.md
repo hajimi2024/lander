@@ -38,7 +38,7 @@ npx skills@latest add hajimi2024/lander -g
 
 ## 🔄 更新
 
-如果 GitHub 仓库里的 `lander` 有新版本，在本地电脑执行：
+如果 GitHub 仓库里的 `lander` 有新版本，在终端执行：
 
 ```powershell
 npx skills@latest update lander -g
