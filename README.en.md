@@ -36,9 +36,9 @@ It first identifies the project shape, then chooses an executable path from the 
 
 - 🖥️ **Long-running VPS services**: it has dedicated rules for public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites, so a new service does not disrupt what is already running.
 
-- 💻 **Local machine / WSL2 projects**: it separates direct use from source development. When a project can run or be imported directly, it does not default to dependency installation and build workflows.
+- 💻 **Local trial runs**: useful when you want to get a small service, CLI, or developer tool running on your current machine or inside WSL2 first. `lander` confirms the official command and required environment before deciding whether to install dependencies, start a service, or switch to a Linux environment.
 
-- 🧩 **Importable artifacts**: suitable for Agent Skills, MCPs, browser extensions, WordPress plugins, templates, plugins, and CLIs. It follows the official install or import entrypoint instead of forcing a server deployment flow.
+- 🧩 **Agent / MCP / browser extension / CLI tools**: works well for tool repositories with a clear install entrypoint. `lander` confirms where to install it, which command to use, and how to verify it; for ordinary attachments or manual-upload projects, it only identifies the path and does not treat them as deployment tasks.
 
 `SKILL.md` stays intentionally thin. It carries the main workflow and routing rules, while task-specific details live in first-level `references/` files that are loaded only when needed.
 
