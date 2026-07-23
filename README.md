@@ -1,98 +1,78 @@
-# 🚀 Lander（落地者）
+# lander
 
-Lander 是一个面向 GitHub 开源项目的 Agent Skill。它帮助 Agent 读取官方文档、识别项目类型、选择稳定的落地方式，并分阶段完成安装、部署、验证与交接。
+lander is a single Agent Skill for turning a GitHub repository into something usable: a runnable app, a deployable service, or an importable artifact.
 
-> 核心目标：把一个 GitHub Repository 安全、清晰地落地为可运行、可使用或可导入的项目。
+It guides an agent through repository recognition, official documentation review, route selection, staged execution, verification, and handoff. The default bias is conservative: use the official path with the fewest dependencies, the simplest operation, and the lowest operational risk.
 
-## ✨ 能做什么
+## What It Does
 
-- 📖 阅读 `README`、安装说明、`Dockerfile`、Compose 和环境变量示例。
-- 🧭 识别 Docker、Native、本地、WSL2、VPS 或可导入项目路线。
-- 🪶 优先推荐依赖最少、操作最简单、风险最低的官方方案。
-- 🖥️ 对服务器执行只读环境预检，评估 CPU、内存、磁盘和现有服务余量。
-- 🌐 按需协助配置私有访问、SSH 隧道、域名、反向代理和 HTTPS。
-- 🔐 支持 Cloudflare DNS-01、证书自动续签及续签后的服务重载方案。
-- 🧩 识别 Plugin、Skill、MCP、模板和浏览器扩展等可导入项目。
-- ✅ 验证进程、容器、端口、HTTP/API、页面访问和数据持久化。
-- 📝 在适当阶段生成简洁、默认私有且经过脱敏的部署记录。
+- Reads repository README files, install docs, Docker/Compose files, package manifests, and environment examples when they are relevant.
+- Classifies projects as runnable or importable before choosing a route.
+- Handles local, WSL2, VPS, Docker/Compose, native install, template, plugin, Skill, MCP, and browser-extension paths.
+- Performs read-only server preflight checks before deployment work.
+- Guides private access, SSH tunnels, domains, reverse proxies, HTTPS, and certificate renewal without replacing existing infrastructure blindly.
+- Creates concise, private-by-default deployment records only at the appropriate lifecycle points.
 
-## 🌳 工作流程
+## Install
 
-```text
-GitHub Repository
-→ 项目识别
-→ 项目分析
-→ 制定方案
-→ 执行落地
-→ 验证与交接
-```
-
-第一轮只分析核心官方资料、概括项目并提出当前必要问题，不会立即安装、构建或连接服务器。后续每个阶段完成后先验证，再继续下一阶段。
-
-## 📦 安装
-
-### Codex Desktop / CLI（Windows）
-
-需要先安装并登录 [GitHub CLI](https://cli.github.com/)：
+Install with the Skills CLI:
 
 ```powershell
-gh auth login
-gh repo clone hajimi2024/lander "$env:USERPROFILE\.codex\skills\lander"
+npx skills@latest add hajimi2024/lander -g
 ```
 
-### Codex CLI（macOS / Linux）
+During interactive installation:
 
-```bash
-gh auth login
-gh repo clone hajimi2024/lander "${CODEX_HOME:-$HOME/.codex}/skills/lander"
-```
+- Skill: choose `lander`.
+- Agent: choose the agents you actually use, such as `codex`, `claude-code`, `cursor`, or `opencode`. The full list is maintained by the Skills CLI.
+- Scope: choose Global for normal use. Choose Project only when a repository should carry its own fixed Skill installation.
+- Method: choose Symlink by default. Choose Copy if symlinks are not supported, you want a fixed snapshot, or you are preparing a team handoff.
 
-安装后重新启动或新建 Codex 任务，让 Agent 重新发现 Skill。
-
-更新已安装版本：
+List available skills without installing:
 
 ```powershell
-git -C "$env:USERPROFILE\.codex\skills\lander" pull
+npx skills@latest add hajimi2024/lander --list
 ```
 
-## 💬 如何调用
+Install non-interactively for Codex:
 
-在 Codex 中直接使用 `$lander`：
+```powershell
+npx skills@latest add hajimi2024/lander -g -a codex --skill lander -y
+```
+
+Install a copied snapshot for Codex:
+
+```powershell
+npx skills@latest add hajimi2024/lander -g -a codex --skill lander --copy -y
+```
+
+After installation, restart the target agent or start a new task if it does not discover newly installed skills immediately.
+
+## Use
+
+Invoke it explicitly:
 
 ```text
-使用 $lander 分析并部署 https://github.com/owner/repository
+/lander 分析并部署 https://github.com/owner/repository
 ```
 
-只进行项目识别，不执行部署：
+Only identify and plan, without changing an environment:
 
 ```text
-使用 $lander 检查 https://github.com/owner/repository，第一轮只分析，不修改环境。
+/lander 检查 https://github.com/owner/repository，第一轮只分析，不修改环境。
 ```
 
-部署到 VPS：
+Deploy to a VPS with a read-only preflight first:
 
 ```text
-使用 $lander 将 https://github.com/owner/repository 部署到我的 VPS，并先执行只读环境检查。
+/lander 将 https://github.com/owner/repository 部署到我的 VPS，并先执行只读环境检查。
 ```
 
-安装 Plugin、Skill 或 MCP：
+Natural language also works. If the task involves recognizing, installing, deploying, validating, or importing a GitHub project, the agent can choose lander automatically.
 
-```text
-使用 $lander 识别并安装这个仓库；如果它属于可导入项目，请选择对应路线：https://github.com/owner/repository
-```
+## Structure
 
-也可以使用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署或导入，Agent 就可以自动选择 Lander。
-
-## 🛡️ 安全原则
-
-- 不猜测密码、Token、API Key、域名或目标路径。
-- “仅检查”阶段不修改目标环境。
-- 不擅自关闭防火墙、停止全部容器或替换现有证书体系。
-- 部署记录默认保存在本地，不自动提交到 GitHub 或公开位置。
-- 公开分享部署资料时，保留私有原件并另行生成脱敏副本。
-- 涉及公网暴露、DNS、证书、付费操作或破坏性修改时，先向用户说明。
-
-## 🗂️ 目录结构
+This is a single Skill repository. The root `SKILL.md` is the installable skill entrypoint.
 
 ```text
 lander/
@@ -107,12 +87,15 @@ lander/
     └── templates/
 ```
 
-## 🎯 适用场景
+`SKILL.md` stays intentionally thin. It routes the agent to first-level reference files only when the task needs them.
 
-适合 GitHub 开源应用、Docker 服务、CLI 工具、静态模板、Plugin、Skill、MCP，以及需要部署到本地电脑、WSL2 或远程 Linux VPS 的项目。
+## Safety
 
-Lander 不承诺无条件自动解决所有问题。遇到账号授权、秘密信息、付费服务、安全边界或重要方案选择时，它会暂停并向用户确认。
+- Do not guess passwords, tokens, API keys, domains, target paths, or paid-service choices.
+- Treat "check only" as read-only.
+- Do not disable firewalls, stop all containers, delete certificates, or replace existing proxy/certificate systems without an explicit plan and confirmation.
+- Keep deployment records private by default and out of GitHub, issues, PRs, releases, and CI artifacts unless the user explicitly asks for a redacted public copy.
 
-## 📄 License
+## License
 
-当前仓库尚未添加 License。在明确授权协议前，请勿默认将其视为可自由再分发的软件。
+No license has been selected yet. Do not treat this repository as freely redistributable until a license is added.
