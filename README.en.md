@@ -107,7 +107,7 @@ The official Skills CLI decides which prompts are required for the current envir
 
 The exact interface therefore depends on the agents installed on the computer and the user's selections.
 
-## 🔁 Update
+## ♻️ Update
 
 When this repository has a newer version of `lander`, run:
 

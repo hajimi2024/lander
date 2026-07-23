@@ -107,7 +107,7 @@ npx github:hajimi2024/lander
 
 因此，实际界面会随电脑上已安装的 Agent 和用户选择而变化。
 
-## 🔁 更新
+## ♻️ 更新
 
 如果 GitHub 仓库中的 `lander` 有新版本，在终端执行：
 
