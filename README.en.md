@@ -62,7 +62,7 @@ Works well for frontend/backend projects with a documented startup path.
 
 `lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
 
-#### 🖥️ Long-running VPS Services
+#### 🛰️ Long-running VPS Services
 
 Useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites.
 
