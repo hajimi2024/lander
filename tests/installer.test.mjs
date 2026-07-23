@@ -1,21 +1,21 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BANNER, DIVIDER, TAGLINE, buildSkillsCommand, supportsAnimation } from "../bin/lander.mjs";
+import { BANNER, DIVIDER, TAGLINE, buildSkillsCommand, supportsAnimation } from "../bin/lander-new.mjs";
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
   assert.equal(DIVIDER, "──●────●────●────●────●────●──");
-  assert.equal(TAGLINE, "AI Skills for Codex • Cursor • Grok Build");
+  assert.equal(TAGLINE, "lander-new • AI Skills for Codex • Cursor • Grok Build");
 });
 
 test("installer delegates to the official Skills CLI without forcing global scope", () => {
   assert.deepEqual(buildSkillsCommand([], "win32"), {
     executable: "npx.cmd",
-    args: ["skills@latest", "add", "hajimi2024/lander"]
+    args: ["skills@latest", "add", "hajimi2024/lander-new"]
   });
   assert.deepEqual(buildSkillsCommand(["--copy"], "linux"), {
     executable: "npx",
-    args: ["skills@latest", "add", "hajimi2024/lander", "--copy"]
+    args: ["skills@latest", "add", "hajimi2024/lander-new", "--copy"]
   });
 });
 

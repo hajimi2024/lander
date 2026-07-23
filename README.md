@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 lander
+# 🚀 lander-new
 
 **把 GitHub 仓库稳定转化为可运行、可部署、可导入的项目**
 
@@ -17,10 +17,10 @@
 ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
 
 ──●────●────●────●────●────●──
-   AI Skills for Codex • Cursor • Grok Build
+   lander-new • AI Skills for Codex • Cursor • Grok Build
 ```
 
-![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)
+![lander-new Agent Skill](https://img.shields.io/badge/lander--new-Agent_Skill-d1008f?style=flat-square)
 ![GitHub Repository Analysis](https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square)
 ![Deployment Targets](https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square)
 ![Deployment Routes](https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square)
@@ -32,7 +32,7 @@
 
 ## ✨ 能做什么
 
-`lander` 为 Agent 提供一套面对陌生 GitHub 仓库时的研判与执行流程。
+`lander-new` 为 Agent 提供一套面对陌生 GitHub 仓库时的研判与执行流程。
 
 它先识别项目形态和官方使用方式，再根据目标环境选择路线，最后分阶段完成配置、执行、访问、验证和交接。第一轮只分析，不会直接安装依赖、连接服务器或修改环境。
 
@@ -70,7 +70,7 @@
 
 - 🌐 **Web 服务、后端服务和全栈应用**
 
-  适合官方文档明确说明运行入口、依赖和配置方式的项目。`lander` 会根据目标环境选择本机、Docker、VPS 或项目支持的其他方式。
+  适合官方文档明确说明运行入口、依赖和配置方式的项目。`lander-new` 会根据目标环境选择本机、Docker、VPS 或项目支持的其他方式。
 
 - 📌 **VPS 长期运行服务**
 
@@ -78,11 +78,11 @@
 
 - 💻 **本机试运行项目**
 
-  适合先在当前电脑或 WSL2 中运行的小型服务、CLI 和开发工具。`lander` 会先确认官方命令和所需环境，再进入安装或启动阶段。
+  适合先在当前电脑或 WSL2 中运行的小型服务、CLI 和开发工具。`lander-new` 会先确认官方命令和所需环境，再进入安装或启动阶段。
 
 - 🧩 **Agent / MCP / 浏览器扩展 / CLI 工具**
 
-  适合具有明确官方安装入口的工具型仓库。`lander` 负责识别安装位置、官方命令和最小验证方式，不把普通附件或手工上传项目包装成服务器部署任务。
+  适合具有明确官方安装入口的工具型仓库。`lander-new` 负责识别安装位置、官方命令和最小验证方式，不把普通附件或手工上传项目包装成服务器部署任务。
 
 `SKILL.md` 保持为薄入口，负责主流程、安全门槛和条件路由；具体规则放在一级 `references/` 中按需加载。
 
@@ -91,16 +91,16 @@
 在终端执行：
 
 ```powershell
-npx github:hajimi2024/lander
+npx github:hajimi2024/lander-new
 ```
 
-随后进入官方 Skills CLI。它会读取仓库、识别 `lander`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
+随后进入官方 Skills CLI。它会读取仓库、识别 `lander-new`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
 
 ## 🧭 交互选择
 
 官方 Skills CLI 会根据当前环境决定哪些步骤需要询问：
 
-- **Skill**：仓库只有一个 `lander`，发现后直接使用。
+- **Skill**：仓库只有一个 `lander-new`，发现后直接使用。
 - **Agent**：检测到多个 Agent 时显示选择列表；只检测到一个时可能直接选中。完整支持列表由 Skills CLI 维护。
 - **Scope**：未通过参数预先指定且目标 Agent 支持全局安装时，询问 Project / Global。
 - **Method**：多个不同安装目录需要分发时，询问 Symlink / Copy；单一目录时可能直接使用 Copy。
@@ -109,10 +109,10 @@ npx github:hajimi2024/lander
 
 ## ♻️ 更新
 
-如果 GitHub 仓库中的 `lander` 有新版本，在终端执行：
+如果 GitHub 仓库中的 `lander-new` 有新版本，在终端执行：
 
 ```powershell
-npx skills@latest update lander
+npx skills@latest update lander-new
 ```
 
 未指定范围时，Skills CLI 会根据当前环境处理或询问 Project / Global。更新后如果 Agent 没有立即发现新版本，请重启目标 Agent 或新建任务。
@@ -122,22 +122,22 @@ npx skills@latest update lander
 显式调用：
 
 ```text
-/lander 分析并部署 https://github.com/owner/repository
+/lander-new 分析并部署 https://github.com/owner/repository
 ```
 
 只做识别和规划：
 
 ```text
-/lander 检查 https://github.com/owner/repository，第一轮只分析，不修改环境。
+/lander-new 检查 https://github.com/owner/repository，第一轮只分析，不修改环境。
 ```
 
 部署到 VPS，并先做只读检查：
 
 ```text
-/lander 将 https://github.com/owner/repository 部署到我的 VPS，并先执行只读环境检查。
+/lander-new 将 https://github.com/owner/repository 部署到我的 VPS，并先执行只读环境检查。
 ```
 
-也可以直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander`。
+也可以直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander-new`。
 
 ## 🛡️ 安全边界
 
@@ -154,14 +154,14 @@ npx skills@latest update lander
 这是一个单 Skill 仓库，根目录 `SKILL.md` 是可安装入口。终端包装器只提供动画并转交官方 Skills CLI，不改变 Skill 发现结构。
 
 ```text
-lander/
+lander-new/
 ├── SKILL.md
 ├── README.md
 ├── README.en.md
 ├── agents/
 ├── assets/templates/
 ├── bin/
-│   └── lander.mjs
+│   └── lander-new.mjs
 ├── references/
 ├── scripts/
 │   └── preflight.sh

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Read-only conditional preflight for lander.
+# Read-only conditional preflight for lander-new.
 set +e
 
 mode=${1:-}
@@ -91,7 +91,6 @@ docker_check() {
 
   section STORAGE
   docker system df 2>/dev/null || rc=1
-
   return "$rc"
 }
 
