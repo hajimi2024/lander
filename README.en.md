@@ -32,7 +32,7 @@ It first identifies the project shape, then chooses an executable path from the 
 
 - 🐳 **Docker / Compose self-hosted services**: works well for panels, API services, web apps, database-backed stacks, and personal tools. `lander` checks Docker, containers, ports, mounts, resources, and health before bringing services up.
 
-- 🌐 **Web services, backend services, and full-stack apps**: it does not force Node, Python, Go, Rust, or PHP projects into a fixed template. It follows the repository's own README, install docs, environment examples, and startup path first.
+- 🌐 **Web services, backend services, and full-stack apps**: works well for frontend/backend projects with a documented startup path. `lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
 
 - 🖥️ **Long-running VPS services**: it has dedicated rules for public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites, so a new service does not disrupt what is already running.
 
