@@ -4,7 +4,7 @@
 
 **把 GitHub 仓库稳定落地为可运行、可部署、可导入的项目**
 
-[English](README.en.md) · [安装](#-安装) · [使用方式](#-使用方式)
+[English](README.en.md) · [安装](#-安装) · [更新](#-更新) · [使用方式](#-使用方式)
 
 </div>
 
@@ -35,6 +35,16 @@ npx skills@latest add hajimi2024/lander -g
 ```
 
 安装后，如果 Agent 没有立即发现新 Skill，请重启目标 Agent 或新建任务。
+
+## 🔄 更新
+
+如果 GitHub 仓库里的 `lander` 有新版本，在本地电脑执行：
+
+```powershell
+npx skills@latest update lander -g
+```
+
+这会更新全局安装的 `lander`。如果你当初选择的是 Project 安装，请在对应项目目录中执行，并把 `-g` 换成 `-p`。
 
 ## 🧭 交互选择
 
