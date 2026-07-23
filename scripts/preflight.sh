@@ -1,5 +1,5 @@
 #!/bin/sh
-# Read-only conditional preflight for Lander.
+# Read-only conditional preflight for lander.
 set +e
 
 mode=${1:-}
@@ -8,7 +8,19 @@ section() { printf '\n== %s ==\n' "$1"; }
 has() { command -v "$1" >/dev/null 2>&1; }
 
 usage() {
-  printf '%s\n' 'Usage: preflight.sh {basic|docker|ingress|kejilion}'
+  printf '%s\n' 'Usage: preflight.sh {basic|docker|ingress|web-stack}'
+}
+
+count_paths() {
+  for path in "$@"; do
+    [ -e "$path" ] || continue
+    if [ -d "$path" ]; then
+      count=$(find "$path" -maxdepth 2 -mindepth 1 -print 2>/dev/null | awk 'END {print NR+0}')
+      printf 'path=%s entries=%s\n' "$path" "$count"
+    else
+      ls -ld "$path" 2>/dev/null
+    fi
+  done
 }
 
 basic() {
@@ -46,10 +58,10 @@ basic() {
 
   section MARKERS
   if has docker; then printf '%s\n' 'Docker: present'; else printf '%s\n' 'Docker: absent'; fi
-  if [ -e /root/kejilion.sh ] || [ -e /usr/local/bin/k ] || [ -e /home/web/docker-compose.yml ]; then
-    printf '%s\n' 'KejiLion: detected'
+  if [ -d /etc/nginx ] || [ -d /etc/caddy ] || [ -d /etc/apache2 ] || [ -d /etc/traefik ] || [ -d /etc/letsencrypt ] || [ -d /root/.acme.sh ]; then
+    printf '%s\n' 'Managed web stack markers: detected'
   else
-    printf '%s\n' 'KejiLion: not detected'
+    printf '%s\n' 'Managed web stack markers: not detected'
   fi
 }
 
@@ -91,11 +103,7 @@ ingress() {
   ps -eo comm 2>/dev/null | grep -Ei '^(nginx|caddy|traefik|apache2?|haproxy)$' | sort -u | sed 's/^/proxy=/'
 
   section CONFIG_PATHS
-  for path in /etc/nginx /etc/caddy /home/web/conf.d; do
-    [ -d "$path" ] || continue
-    count=$(find "$path" -maxdepth 2 -type f 2>/dev/null | awk 'END {print NR+0}')
-    printf 'path=%s files=%s\n' "$path" "$count"
-  done
+  count_paths /etc/nginx /etc/caddy /etc/apache2 /etc/traefik /home/web/conf.d /www/server/panel/vhost
 
   section FIREWALL
   if has ufw; then
@@ -104,56 +112,58 @@ ingress() {
   else printf '%s\n' 'No supported firewall frontend detected'; fi
 
   section CERTIFICATES
-  for tool in certbot acme.sh caddy; do
+  for tool in certbot acme.sh caddy lego; do
     if has "$tool"; then printf '%s: %s\n' "$tool" "$(command -v "$tool")"; fi
   done
   [ -x /root/.acme.sh/acme.sh ] && printf '%s\n' 'acme.sh: /root/.acme.sh/acme.sh'
-  if has systemctl; then systemctl list-timers --all --no-pager 2>/dev/null | grep -Ei 'certbot|acme' | sed -n '1,15p'; fi
+  if has systemctl; then systemctl list-timers --all --no-pager 2>/dev/null | grep -Ei 'certbot|acme|lego|renew' | sed -n '1,15p'; fi
   for file in /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/root; do
     [ -f "$file" ] || continue
-    count=$(grep -Eic 'certbot|acme|renew' "$file" 2>/dev/null)
+    count=$(grep -Eic 'certbot|acme|lego|renew' "$file" 2>/dev/null)
     [ "$count" -gt 0 ] && printf 'renewal_file=%s entries=%s\n' "$file" "$count"
   done
 }
 
-kejilion() {
-  section KEJILION
-  for path in /root/kejilion.sh /usr/local/bin/k /home/web/docker-compose.yml /root/auto_cert_renewal.sh /root/.acme.sh; do
-    [ -e "$path" ] && ls -ld "$path"
-  done
+web_stack() {
+  section WEB_STACK_MARKERS
+  count_paths /etc/nginx /etc/caddy /etc/apache2 /etc/traefik /etc/haproxy /etc/letsencrypt /root/.acme.sh /opt /srv /var/www /www/wwwroot /home/web
 
-  section LDNMP
-  if has docker && [ -f /home/web/docker-compose.yml ]; then
-    docker compose -f /home/web/docker-compose.yml config --services 2>/dev/null
-    docker ps -a --filter name=nginx --format 'name={{.Names}} status={{.Status}} ports={{.Ports}}' 2>/dev/null
+  section PORT_OWNERS
+  if has ss; then
+    ss -lntup 2>/dev/null | awk 'NR==1 || $5 ~ /:80$/ || $5 ~ /:443$/'
   fi
-  for path in /home/web/html /home/web/certs /home/web/conf.d /home/web/docker-projects; do
-    [ -d "$path" ] || continue
-    count=$(find "$path" -maxdepth 1 -mindepth 1 -print 2>/dev/null | awk 'END {print NR+0}')
-    printf 'path=%s entries=%s\n' "$path" "$count"
-  done
-
-  section WORDPRESS
-  count=$(find /home/web /var/www /www/wwwroot -xdev -maxdepth 6 \( -type f -name wp-config.php -o -type d -name wp-content \) -print 2>/dev/null | awk 'END {print NR+0}')
-  printf 'WordPress markers: %s\n' "$count"
-
-  section RENEWAL
-  if [ -x /root/.acme.sh/acme.sh ]; then
-    count=$(/root/.acme.sh/acme.sh --list 2>/dev/null | awk 'NR>1 && NF {count++} END {print count+0}')
-    printf 'acme.sh managed certificates: %s\n' "$count"
+  if has docker; then
+    docker ps -a --format 'name={{.Names}} status={{.Status}} ports={{.Ports}}' 2>/dev/null | grep -E '(:80|:443|->80|->443)' | sed -n '1,20p'
   fi
-  for file in /var/spool/cron/crontabs/root /etc/crontab; do
+
+  section PROXIES
+  ps -eo comm 2>/dev/null | grep -Ei '^(nginx|caddy|traefik|apache2?|haproxy)$' | sort -u | sed 's/^/proxy=/'
+  if has docker; then
+    docker ps -a --format 'name={{.Names}} image={{.Image}} status={{.Status}}' 2>/dev/null | grep -Ei 'nginx|caddy|traefik|apache|haproxy' | sed -n '1,20p'
+  fi
+
+  section CERT_RENEWAL
+  for tool in certbot acme.sh caddy lego; do
+    if has "$tool"; then printf '%s: %s\n' "$tool" "$(command -v "$tool")"; fi
+  done
+  [ -x /root/.acme.sh/acme.sh ] && printf '%s\n' 'acme.sh: /root/.acme.sh/acme.sh'
+  if has systemctl; then systemctl list-timers --all --no-pager 2>/dev/null | grep -Ei 'certbot|acme|lego|renew' | sed -n '1,20p'; fi
+  for file in /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/root; do
     [ -f "$file" ] || continue
-    count=$(grep -Eic 'certbot|acme|renew|auto_cert' "$file" 2>/dev/null)
+    count=$(grep -Eic 'certbot|acme|lego|renew' "$file" 2>/dev/null)
     [ "$count" -gt 0 ] && printf 'renewal_file=%s entries=%s\n' "$file" "$count"
   done
+
+  section WORDPRESS_MARKERS
+  count=$(find /var/www /www/wwwroot /home/web /srv -xdev -maxdepth 6 \( -type f -name wp-config.php -o -type d -name wp-content \) -print 2>/dev/null | awk 'END {print NR+0}')
+  printf 'WordPress markers: %s\n' "$count"
 }
 
 case "$mode" in
   basic) basic ;;
   docker) docker_check ;;
   ingress) ingress ;;
-  kejilion) kejilion ;;
+  web-stack) web_stack ;;
   *) usage; exit 2 ;;
 esac
 
