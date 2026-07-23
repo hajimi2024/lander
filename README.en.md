@@ -4,7 +4,7 @@
 
 **Turn a GitHub repository into a runnable, deployable, or importable project with a stable agent workflow**
 
-[简体中文](README.md) · [Install](#-install) · [Usage](#-usage)
+[简体中文](README.md) · [Install](#-install) · [Update](#-update) · [Usage](#-usage)
 
 </div>
 
@@ -35,6 +35,16 @@ npx skills@latest add hajimi2024/lander -g
 ```
 
 After installation, restart the target agent or start a new task if it does not discover newly installed skills immediately.
+
+## 🔄 Update
+
+When this GitHub repository has a newer version of `lander`, run this on your local machine:
+
+```powershell
+npx skills@latest update lander -g
+```
+
+This updates the globally installed `lander`. If you originally chose Project scope, run it from that project directory and replace `-g` with `-p`.
 
 ## 🧭 Interactive Choices
 
