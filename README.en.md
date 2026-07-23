@@ -4,7 +4,7 @@
 
 **Turn a GitHub repository into a runnable, deployable, or importable project with a stable agent workflow**
 
-[简体中文](README.md) · [Skills CLI](https://github.com/vercel-labs/skills) · [Install](#-install) · [Usage](#-usage)
+[简体中文](README.md) · [Install](#-install) · [Usage](#-usage)
 
 </div>
 
