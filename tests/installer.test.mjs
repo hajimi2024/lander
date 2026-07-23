@@ -1,6 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BANNER, DIVIDER, TAGLINE, buildSkillsCommand, supportsAnimation } from "../bin/lander-new.mjs";
+import {
+  BANNER,
+  DIVIDER,
+  TAGLINE,
+  buildSkillsCommand,
+  buildSpawnOptions,
+  supportsAnimation
+} from "../bin/lander-new.mjs";
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
@@ -17,6 +24,11 @@ test("installer delegates to the official Skills CLI without forcing global scop
     executable: "npx",
     args: ["skills@latest", "add", "hajimi2024/lander-new", "--copy"]
   });
+});
+
+test("installer uses shell execution for Windows command shims", () => {
+  assert.equal(buildSpawnOptions("win32", {}).shell, true);
+  assert.equal(buildSpawnOptions("linux", {}).shell, false);
 });
 
 test("animation is disabled for non-interactive and no-color output", () => {

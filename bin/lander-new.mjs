@@ -41,6 +41,14 @@ export function buildSkillsCommand(extraArgs = [], platform = process.platform) 
   };
 }
 
+export function buildSpawnOptions(platform = process.platform, env = process.env) {
+  return {
+    stdio: "inherit",
+    shell: platform === "win32",
+    env
+  };
+}
+
 function color(text, code, enabled) {
   return enabled ? `${code}${text}${RESET}` : text;
 }
@@ -84,9 +92,7 @@ export async function main(extraArgs = process.argv.slice(2)) {
 
   return await new Promise((resolveExit) => {
     const child = spawn(command.executable, command.args, {
-      stdio: "inherit",
-      shell: false,
-      env: process.env
+      ...buildSpawnOptions()
     });
 
     child.once("error", (error) => {
