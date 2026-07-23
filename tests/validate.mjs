@@ -37,6 +37,14 @@ const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 
 ${DIVIDER}
    ${TAGLINE}`;
+const readmeBadges = [
+  "Codex-Skill-d1008f",
+  "Cursor-Compatible-168aad",
+  "Claude_Code-Compatible-d97706",
+  "OpenCode-Compatible-16a34a",
+  "Repository-Single_Skill-2563eb",
+  "Deployment-Security_Guided-111827"
+];
 
 const assertions = [
   [skill.startsWith("---\nname: lander\n"), "SKILL.md frontmatter must identify lander"],
@@ -49,6 +57,8 @@ const assertions = [
   [readmeEn.includes("npx github:hajimi2024/lander"), "English README must show the animated installer"],
   [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
   [readmeEn.includes(readmeBanner), "English README banner must match the installer"],
+  [readmeBadges.every((badge) => readmeZh.includes(badge)), "Chinese README must include the capability badges"],
+  [readmeBadges.every((badge) => readmeEn.includes(badge)), "English README must include the capability badges"],
   [readmeZh.includes("README.en.md"), "Chinese README must link to English"],
   [readmeEn.includes("README.md"), "English README must link to Chinese"]
 ];

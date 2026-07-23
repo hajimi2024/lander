@@ -20,6 +20,13 @@
    AI Skills for Codex • Cursor • Grok Build
 ```
 
+![Codex Skill](https://img.shields.io/badge/Codex-Skill-d1008f?style=flat-square)
+![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-168aad?style=flat-square)
+![Claude Code Compatible](https://img.shields.io/badge/Claude_Code-Compatible-d97706?style=flat-square)
+![OpenCode Compatible](https://img.shields.io/badge/OpenCode-Compatible-16a34a?style=flat-square)
+![Single Skill](https://img.shields.io/badge/Repository-Single_Skill-2563eb?style=flat-square)
+![Security Guided](https://img.shields.io/badge/Deployment-Security_Guided-111827?style=flat-square)
+
 ---
 
 ## ✨ What It Does
