@@ -34,7 +34,7 @@ It first identifies the project shape, then chooses an executable path from the 
 
 - 🌐 **Web services, backend services, and full-stack apps**: works well for frontend/backend projects with a documented startup path. `lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
 
-- 🛰️ **Long-running VPS services**: useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. `lander` confirms the current ingress and certificate systems first, so a new service does not disrupt what is already running.
+- 📌 **Long-running VPS services**: useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. `lander` confirms the current ingress and certificate systems first, so a new service does not disrupt what is already running.
 
 - 💻 **Local trial runs**: useful when you want to get a small service, CLI, or developer tool running on your current machine or inside WSL2 first. `lander` confirms the official command and required environment before deciding whether to install dependencies, start a service, or switch to a Linux environment.
 
