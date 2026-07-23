@@ -3,8 +3,14 @@
 - Repository：`{{REPOSITORY}}`
 - 项目：`{{PROJECT_NAME}}`
 - 类型：`{{PROJECT_TYPE}}`
+- 用户目标：{{USER_GOAL}}
+- 任务路径：{{TASK_PATH}}
+- 执行深度：{{EXECUTION_DEPTH}}
 - 已检查版本/ref：`{{VERSION_OR_REF}}`
+- 关键官方依据：{{OFFICIAL_EVIDENCE}}
 - 官方方式：`{{OFFICIAL_METHOD}}`
+- 路线选择：{{ROUTE_DECISION}}
+- 组件关系（如适用）：{{COMPONENT_TOPOLOGY}}
 - 主要依赖：{{MAIN_DEPENDENCIES}}
 - 资源判断：{{RESOURCE_JUDGMENT}}
 - 敏感配置风险：{{SECRET_RISK_SUMMARY}}

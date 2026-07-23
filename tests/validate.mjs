@@ -31,7 +31,11 @@ const read = async (path) => readFile(join(root, path), "utf8");
 const skill = await read("SKILL.md");
 const readmeZh = await read("README.md");
 const readmeEn = await read("README.en.md");
+const recognition = await read("references/project-recognition.md");
+const strategies = await read("references/deployment-strategies.md");
 const security = await read("references/secret-safety.md");
+const artifacts = await read("references/artifact-contracts.md");
+const summary = await read("assets/templates/project-summary.md");
 const report = await read("assets/templates/deployment-report.md");
 const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 
@@ -49,11 +53,29 @@ const readmeBadges = [
 
 const assertions = [
   [skill.startsWith("---\nname: lander-new\n"), "SKILL.md frontmatter must identify lander-new"],
+  [skill.includes("## 自适应深度"), "SKILL.md must define adaptive execution depth"],
+  [skill.includes("默认从轻量流程开始"), "SKILL.md must start with the lightweight workflow"],
+  [skill.includes("安全风险不因流程轻量而省略"), "SKILL.md must keep safety independent from complexity"],
   [skill.includes("references/secret-safety.md"), "SKILL.md must route sensitive configuration"],
   [skill.includes("不得开放公网"), "SKILL.md must include a public exposure gate"],
+  [recognition.includes("## 任务路径"), "project recognition must classify the user's task path"],
+  [recognition.includes("## 复杂度与风险"), "project recognition must assess complexity and risk separately"],
+  [strategies.includes("轻量流程") && strategies.includes("标准流程") && strategies.includes("增强流程"), "execution strategies must define all adaptive depths"],
+  [strategies.includes("只验证当前路线应有的结果"), "execution strategies must use route-specific verification"],
   [security.includes("默认凭据"), "secret-safety must cover default credentials"],
   [security.includes("开发到生产"), "secret-safety must cover production transition"],
+  [security.includes("安全风险与项目复杂度分开判断"), "secret-safety must override lightweight execution when needed"],
+  [artifacts.includes("## 对话交接简报"), "artifact contracts must require a conversational handoff"],
+  [artifacts.includes("轻量安装、导入、CLI"), "artifact contracts must avoid deployment records for lightweight tasks"],
+  [artifacts.includes("即使创建或修改了临时文件"), "temporary file changes must not force deployment records"],
+  [skill.includes("轻量任务默认不创建日志"), "lightweight tasks must not create deployment logs by default"],
+  [summary.includes("执行深度"), "project summary must record execution depth"],
+  [summary.includes("组件关系（如适用）"), "project summary must keep topology conditional"],
+  [report.includes("验证结果"), "deployment report must record verification outcomes"],
+  [report.includes("撤销或恢复方式"), "deployment report must record rollback or removal guidance"],
   [report.includes("默认凭据处理状态"), "deployment report must record credential status"],
+  [readmeZh.includes("⚖️ **自适应深度**"), "Chinese README must describe adaptive depth"],
+  [readmeEn.includes("⚖️ **Adaptive depth**"), "English README must describe adaptive depth"],
   [readmeZh.includes("npx github:hajimi2024/lander-new"), "Chinese README must show the animated installer"],
   [readmeEn.includes("npx github:hajimi2024/lander-new"), "English README must show the animated installer"],
   [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
@@ -72,7 +94,17 @@ for (const [condition, message] of assertions) {
   if (!condition) throw new Error(message);
 }
 
-const publicText = [skill, readmeZh, readmeEn, security].join("\n");
+const publicText = [
+  skill,
+  readmeZh,
+  readmeEn,
+  recognition,
+  strategies,
+  security,
+  artifacts,
+  summary,
+  report
+].join("\n");
 const forbidden = [
   ["落地", "者"].join(""),
   ["$", "lander"].join(""),
@@ -80,7 +112,11 @@ const forbidden = [
   ["keji", "lion"].join(""),
   ["/root/", "keji", "lion.sh"].join(""),
   ["/usr/local/bin/", "k"].join(""),
-  ["github.com/", "keji", "lion"].join("")
+  ["github.com/", "keji", "lion"].join(""),
+  ["Dujiao", "-Next"].join(""),
+  ["dujiao", "-next"].join(""),
+  ["149", ".104.78.227"].join(""),
+  ["sslip", ".io"].join("")
 ];
 
 for (const term of forbidden) {

@@ -1,22 +1,27 @@
-# 部署报告
+# 部署与交接报告
 
 > 默认私有：不得自动提交到 GitHub、Issue、PR、Release、CI 制品或公开上传。公开分享前另行生成脱敏副本。
 
 - Repository：`{{REPOSITORY}}`
+- 状态：{{STATUS}}
 - 版本/commit：`{{VERSION_OR_COMMIT}}`
+- 实际采用路线：{{SELECTED_ROUTE}}
+- 执行深度：{{EXECUTION_DEPTH}}
 - 目标：`{{TARGET}}`
 - 目录：`{{DIRECTORY}}`
-- 服务：{{SERVICES}}
-- 端口：{{PORTS}}
-- 访问方式：{{ACCESS}}
-- 持久化数据：{{PERSISTENCE}}
+- 组件与依赖：{{COMPONENTS}}
+- 验证结果：{{VERIFICATION_RESULTS}}
+- 使用与访问方式：{{USAGE_AND_ACCESS}}
+- 环境修改：{{ENVIRONMENT_CHANGES}}
+- 启动、停止与更新：{{OPERATIONS}}
+- 撤销或恢复方式：{{ROLLBACK_OR_REMOVAL}}
+- 端口与内部入口（如适用）：{{PORTS_AND_INTERNAL_ROUTES}}
+- 持久化与备份（如适用）：{{PERSISTENCE_AND_BACKUP}}
 - 敏感配置保存位置：{{SECRET_LOCATIONS}}
 - 敏感文件权限：{{SECRET_PERMISSIONS}}
 - 默认凭据处理状态：{{DEFAULT_CREDENTIALS_STATUS}}
 - 生产配置状态：{{PRODUCTION_CONFIG_STATUS}}
 - 轮换责任与待办：{{ROTATION_OWNER_AND_TASKS}}
-- 状态：{{STATUS}}
-- 运维方式：{{OPERATIONS}}
 - 剩余风险：{{RISKS}}
 - 下一步：{{NEXT_STEP}}
 - 更新时间：`{{UPDATED_AT}}`

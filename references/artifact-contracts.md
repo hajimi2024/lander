@@ -1,6 +1,20 @@
-# 部署记录约定
+# 交接与部署记录约定
 
-只有满足生命周期条件时才创建记录。默认不要将运行记录存入 Skill 或上游仓库。
+所有任务都要在对话中提供交接简报。只有标准或增强流程中的实际服务部署、长期运行或需要持续维护的任务才创建文件记录。默认不要将运行记录存入 Skill 或上游仓库。
+
+Release 下载、CLI 安装、Skill/MCP/扩展导入和一次性本机验证，即使创建或修改了临时文件，也不创建 `PROJECT_SUMMARY.md`、`DEPLOYMENT_LOG.md` 或 `DEPLOYMENT_REPORT.md`；用户明确要求留档时例外。
+
+## 对话交接简报
+
+任务成功、部分成功、阻塞或回滚时都要输出，状态只使用：
+
+```text
+成功 / 部分成功 / 阻塞 / 已回滚
+```
+
+始终说明采用路线和版本、验证结果及使用方式。环境修改、撤销方式、剩余风险、安装位置、端口、组件、访问入口、持久化、备份和证书等内容仅在适用时出现。
+
+关键结果没有完成验证时，不得报告成功。无法安全创建文件记录时，说明原因并完整输出对话交接。
 
 ## 默认位置
 
@@ -24,11 +38,13 @@ $CODEX_HOME/deployment-records/<owner>--<repo>/<target>/
 
 ## PROJECT_SUMMARY.md
 
-第一轮识别完成且用户确认继续后创建。使用 `assets/templates/project-summary.md`。版本、分类、官方方式、敏感配置风险或生产要求发生变化时更新。
+标准或增强流程中的实际服务部署、长期运行任务在第一轮识别完成且用户确认继续后创建。使用 `assets/templates/project-summary.md`。版本、分类、执行深度、官方方式、敏感配置风险或生产要求发生变化时更新。
+
+轻量安装、导入、CLI 和一次性本地任务不创建该文件。
 
 ## DEPLOYMENT_LOG.md
 
-第一次修改状态前创建。使用 `assets/templates/deployment-log.md`，只追加有意义的事件：
+标准或增强流程中的实际服务部署、长期运行任务在第一次修改状态前创建。使用 `assets/templates/deployment-log.md`，只追加有意义的事件：
 
 - 环境适配性已确认；
 - 敏感配置已提醒、已确认或需轮换；
@@ -40,7 +56,7 @@ $CODEX_HOME/deployment-records/<owner>--<repo>/<target>/
 
 ## DEPLOYMENT_REPORT.md
 
-成功落地，或任务在可恢复的稳定节点正式暂停时创建或更新。使用 `assets/templates/deployment-report.md`，维护当前状态而不是事件历史。
+标准或增强流程中的实际服务部署、长期运行任务成功落地，或在可恢复的稳定节点正式暂停时创建或更新。使用 `assets/templates/deployment-report.md`，维护当前状态而不是事件历史。简单安装、导入和本地工具只提供对话交接简报。
 
 秘密信息只记录：
 
@@ -51,6 +67,8 @@ $CODEX_HOME/deployment-records/<owner>--<repo>/<target>/
 - 轮换责任和待办。
 
 不得记录真实值。
+
+报告按任务适用性填写字段。无关字段直接删除，不要用大量“不适用”填充。
 
 ## 回滚与编辑
 

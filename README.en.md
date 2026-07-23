@@ -34,7 +34,9 @@
 
 `lander-new` gives an agent a structured workflow for assessing and executing an unfamiliar GitHub repository.
 
-It identifies the project shape and official usage path first, selects a route for the target environment, and then handles configuration, execution, access, verification, and handoff in stages. The first round is analysis-only: it does not install dependencies, connect to a server, or change the environment.
+It identifies the project shape and official usage path first, selects a route for the target environment, and then handles configuration, execution, access, verification, and handoff. The first round is analysis-only: it does not install dependencies, connect to a server, or change the environment.
+
+`lander-new` starts with a lightweight workflow. Analysis expands only as task complexity grows, while sensitive information independently triggers the relevant safety checks.
 
 **How It Works**
 
@@ -46,6 +48,10 @@ It identifies the project shape and official usage path first, selects a route f
 
   Chooses only from officially supported paths. It prefers a stable route with fewer dependencies and lower operational risk; when direct use satisfies the goal, it does not default to development or build workflows.
 
+- ⚖️ **Adaptive depth**
+
+  Uses a lightweight, standard, or enhanced workflow based on task complexity and operational risk. Repository size does not determine workflow depth, and a simple project still receives relevant safety checks when secrets, paid permissions, or public exposure are involved.
+
 - 🔐 **Sensitive configuration warnings**
 
   Identifies environment variables, API keys, tokens, account credentials, private keys, default credentials, and production settings required by official sources. The agent reports names, purposes, and storage locations without asking the user to paste real values into the conversation.
@@ -56,11 +62,11 @@ It identifies the project shape and official usage path first, selects a route f
 
 - ✅ **Stage-by-stage verification**
 
-  Validates real outcomes after each step, including processes, containers, ports, HTTP/API responses, persistence, and the health of existing services.
+  Verifies outcomes for the selected route: commands and minimum behavior for CLIs, target recognition for imported projects, and processes, containers, ports, application responses, and relevant persistence for running services.
 
-- 📝 **Handoff records**
+- 📝 **Handoff summary**
 
-  Creates concise, private-by-default, redacted deployment records at defined lifecycle points. They are not published to GitHub or public channels automatically.
+  Every task ends with concise results and usage guidance. Environment changes add removal instructions, while actual deployments and long-running services also receive private-by-default, redacted maintenance records.
 
 **Best-fit repositories**
 
