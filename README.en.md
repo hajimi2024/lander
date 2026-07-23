@@ -38,7 +38,7 @@ After installation, restart the target agent or start a new task if it does not 
 
 ## 🔄 Update
 
-When this GitHub repository has a newer version of `lander`, run this on your local machine:
+When this GitHub repository has a newer version of `lander`, run this in your terminal:
 
 ```powershell
 npx skills@latest update lander -g
