@@ -16,69 +16,29 @@
 
 It first identifies the project shape, then chooses an executable path from the official docs, and only then moves through installation, configuration, access, verification, and handoff. It is useful when you hand a repository to an agent and need a clear route toward a working result.
 
-### How It Works
+**How It Works**
 
-#### 🔎 Repository Assessment
+- 🔎 **Repository assessment**: reads README files, install docs, Compose files, Dockerfiles, package manifests, and environment examples to classify apps, services, CLIs, Skills, MCPs, browser extensions, and other repositories that need special handling.
 
-Reads README files, install docs, Compose files, Dockerfiles, package manifests, and environment examples.
+- 🧭 **Route selection**: chooses only from officially supported paths. It prefers the route with fewer dependencies, steadier operations, and lower risk; when direct use is enough, it does not default to development or build workflows.
 
-Classifies whether the repository is an app, service, CLI, Skill, MCP, browser extension, or another type that needs special handling.
+- 🖥️ **Environment preflight**: runs read-only checks for CPU, memory, disk, Docker, ports, proxies, and certificate systems before touching remote hosts or long-running environments.
 
-#### 🧭 Route Selection
+- ✅ **Stage-by-stage verification**: validates real outcomes after each step, including processes, containers, ports, HTTP/API responses, persistence, and the health of existing services.
 
-Chooses only from officially supported paths.
+- 📝 **Handoff records**: creates concise, private-by-default, redacted deployment records at the right lifecycle points. These records are for maintenance and are not published to GitHub or public channels automatically.
 
-It prefers the route with fewer dependencies, steadier operations, and lower risk. When direct use is enough, it does not default to development or build workflows.
+**Best-fit repositories**
 
-#### 🖥️ Environment Preflight
+- 🐳 **Docker / Compose self-hosted services**: works well for panels, API services, web apps, database-backed stacks, and personal tools. `lander` checks Docker, containers, ports, mounts, resources, and health before bringing services up.
 
-Runs read-only checks before touching remote hosts or long-running environments.
+- 🌐 **Web services, backend services, and full-stack apps**: works well for frontend/backend projects with a documented startup path. `lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
 
-Checks CPU, memory, disk, Docker, ports, proxies, and certificate systems before deciding whether to modify anything.
+- 🛰️ **Long-running VPS services**: useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. `lander` confirms the current ingress and certificate systems first, so a new service does not disrupt what is already running.
 
-#### ✅ Stage-by-stage Verification
+- 💻 **Local trial runs**: useful when you want to get a small service, CLI, or developer tool running on your current machine or inside WSL2 first. `lander` confirms the official command and required environment before deciding whether to install dependencies, start a service, or switch to a Linux environment.
 
-Validates real outcomes after each step.
-
-This includes processes, containers, ports, HTTP/API responses, persistence, and the health of existing services.
-
-#### 📝 Handoff Records
-
-Creates concise, private-by-default, redacted deployment records at the right lifecycle points.
-
-These records are for maintenance and are not published to GitHub or public channels automatically.
-
-### Best-fit Repositories
-
-#### 🐳 Docker / Compose Self-hosted Services
-
-Works well for panels, API services, web apps, database-backed stacks, and personal tools.
-
-`lander` checks Docker, containers, ports, mounts, resources, and health before bringing services up.
-
-#### 🌐 Web Services, Backend Services, and Full-stack Apps
-
-Works well for frontend/backend projects with a documented startup path.
-
-`lander` first confirms the entrypoint, environment variables, and dependencies from project docs, then chooses local runtime, Docker, VPS, or another official path.
-
-#### 🛰️ Long-running VPS Services
-
-Useful for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites.
-
-`lander` confirms the current ingress and certificate systems first, so a new service does not disrupt what is already running.
-
-#### 💻 Local Trial Runs
-
-Useful when you want to get a small service, CLI, or developer tool running on your current machine or inside WSL2 first.
-
-`lander` confirms the official command and required environment before deciding whether to install dependencies, start a service, or switch to a Linux environment.
-
-#### 🧩 Agent / MCP / Browser Extension / CLI Tools
-
-Works well for tool repositories with a clear install entrypoint.
-
-`lander` confirms where to install it, which command to use, and how to verify it. For ordinary attachments or manual-upload projects, it only identifies the path and does not treat them as deployment tasks.
+- 🧩 **Agent / MCP / browser extension / CLI tools**: works well for tool repositories with a clear install entrypoint. `lander` confirms where to install it, which command to use, and how to verify it; for ordinary attachments or manual-upload projects, it only identifies the path and does not treat them as deployment tasks.
 
 `SKILL.md` stays intentionally thin. It carries the main workflow and routing rules, while task-specific details live in first-level `references/` files that are loaded only when needed.
 
