@@ -26,7 +26,7 @@
 
 - **本地电脑**：使用原生平台或受支持的本地容器运行时。除非用户明确要求发布到局域网或互联网，否则跳过 VPS 入口和证书工作。
 - **WSL2**：按 Linux 环境处理，同时考虑 Windows 文件系统、端口、服务和重启边界。
-- **VPS**：选择后，任何修改前先运行 `preflight.sh basic`。只有相应路线已启用时，才增加 `docker`、`ingress` 或 `kejilion` 模式。
+- **VPS**：选择后，任何修改前先运行 `preflight.sh basic`。只有相应路线已启用时，才增加 `docker`、`ingress` 或 `web-stack` 模式。
 
 ## 通用执行原则
 
