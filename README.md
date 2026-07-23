@@ -4,13 +4,7 @@
 
 **把 GitHub 仓库稳定落地为可运行、可部署、可导入的项目**
 
-[![Skills CLI](https://img.shields.io/badge/Skills%20CLI-compatible-2563eb)](https://github.com/vercel-labs/skills)
-[![Skill](https://img.shields.io/badge/single%20skill-lander-16a34a)](SKILL.md)
-[![Agents](https://img.shields.io/badge/agents-via%20Skills%20CLI-111827)](https://github.com/vercel-labs/skills)
-[![License](https://img.shields.io/badge/license-pending-lightgrey)](#-license)
-
-<img alt="简体中文" src="https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-current-111827?style=for-the-badge">
-<a href="README.en.md"><img alt="English" src="https://img.shields.io/badge/English-switch-2563eb?style=for-the-badge"></a>
+[English](README.en.md) · [Skills CLI](https://github.com/vercel-labs/skills) · [安装](#-安装) · [使用方式](#-使用方式)
 
 </div>
 
