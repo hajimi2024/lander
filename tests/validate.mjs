@@ -1,6 +1,7 @@
 import { readFile, access } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { BANNER, DIVIDER, TAGLINE } from "../bin/lander.mjs";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -32,6 +33,10 @@ const readmeZh = await read("README.md");
 const readmeEn = await read("README.en.md");
 const security = await read("references/secret-safety.md");
 const report = await read("assets/templates/deployment-report.md");
+const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
+
+${DIVIDER}
+   ${TAGLINE}`;
 
 const assertions = [
   [skill.startsWith("---\nname: lander\n"), "SKILL.md frontmatter must identify lander"],
@@ -42,6 +47,8 @@ const assertions = [
   [report.includes("默认凭据处理状态"), "deployment report must record credential status"],
   [readmeZh.includes("npx github:hajimi2024/lander"), "Chinese README must show the animated installer"],
   [readmeEn.includes("npx github:hajimi2024/lander"), "English README must show the animated installer"],
+  [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
+  [readmeEn.includes(readmeBanner), "English README banner must match the installer"],
   [readmeZh.includes("README.en.md"), "Chinese README must link to English"],
   [readmeEn.includes("README.md"), "English README must link to Chinese"]
 ];
