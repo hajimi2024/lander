@@ -111,6 +111,8 @@ npx github:hajimi2024/lander
 
 The official Skills CLI then reads the repository, detects `lander`, and confirms the target agent, installation scope, and installation method as needed for the current environment. While the repository remains private, the computer must have GitHub credentials with access to it.
 
+If the terminal shows `Ok to proceed? (y)`, type `y` at that prompt and press Enter.
+
 ## 🧭 Interactive Choices
 
 The official Skills CLI decides which prompts are required for the current environment:

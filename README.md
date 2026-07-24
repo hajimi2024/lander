@@ -111,6 +111,8 @@ npx github:hajimi2024/lander
 
 随后进入官方 Skills CLI。它会读取仓库、识别 `lander`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
 
+如果终端出现 `Ok to proceed? (y)`，请在该提示处输入 `y` 并回车。
+
 ## 🧭 交互选择
 
 官方 Skills CLI 会根据当前环境决定哪些步骤需要询问：

@@ -1,8 +1,7 @@
 {
-  "name": "lander-installer",
-  "version": "0.0.0-private",
+  "name": "lander",
+  "version": "0.1.0",
   "description": "Animated installer entrypoint for the lander Agent Skill",
-  "private": true,
   "license": "MIT",
   "type": "module",
   "bin": {

@@ -40,6 +40,7 @@ const read = async (path) => (await readFile(join(root, path), "utf8")).replace(
 const skill = await read("SKILL.md");
 const readmeZh = await read("README.md");
 const readmeEn = await read("README.en.md");
+const packageJson = JSON.parse(await read("package.json"));
 const agentMetadata = await read("agents/openai.yaml");
 const routing = await read("references/project-routing.md");
 const lightweight = await read("references/lightweight-routes.md");
@@ -123,6 +124,11 @@ const assertions = [
   [readmeEn.includes("first round is shallow recognition only") && readmeEn.includes("asks whether to continue into installation or deployment"), "English README must describe shallow first-round confirmation"],
   [readmeZh.includes("npx github:hajimi2024/lander"), "Chinese README must show the animated installer"],
   [readmeEn.includes("npx github:hajimi2024/lander"), "English README must show the animated installer"],
+  [readmeZh.includes("Ok to proceed? (y)") && readmeEn.includes("Ok to proceed? (y)"), "README must explain the npm confirmation prompt"],
+  [packageJson.name === "lander", "package.json must expose the public CLI package name"],
+  [packageJson.version === "0.1.0", "package.json must use a public initial version"],
+  [packageJson.private !== true, "package.json must not mark the open-source installer as private"],
+  [packageJson.bin?.lander === "./bin/lander.mjs", "package.json must expose the lander bin"],
   [readmeBannerZh === readmeBanner, "Chinese README banner must match the installer after display indentation is removed"],
   [readmeBannerEn === readmeBanner, "English README banner must match the installer after display indentation is removed"],
   [!readmeZh.includes("安装器会先播放"), "Chinese install section must not repeat the terminal banner"],
