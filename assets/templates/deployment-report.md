@@ -28,3 +28,15 @@
 - 剩余风险：{{RISKS}}
 - 下一步：{{NEXT_STEP}}
 - 更新时间：`{{UPDATED_AT}}`
+
+## 访问与管理（仅脚本、面板或管理入口项目保留）
+
+- 前台/面板/API 入口：{{ACCESS_ENDPOINTS}}
+- HTTPS 状态：{{HTTPS_STATUS}}
+- 登录用户名：{{LOGIN_USERNAME}}
+- 凭据来源：{{CREDENTIAL_SOURCE}}
+- 凭据保存位置：{{CREDENTIAL_LOCATION}}
+- 凭据处理状态：{{CREDENTIAL_STATUS}}
+- 管理命令与中文说明：{{MANAGEMENT_COMMANDS}}
+
+> 不在本报告记录明文密码。无管理入口时删除本节。

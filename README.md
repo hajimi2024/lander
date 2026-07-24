@@ -38,6 +38,8 @@
 
 `lander-new` 默认从轻量流程开始：简单且低风险的项目只保留必要步骤；复杂度上升时才扩展分析流程，出现敏感信息时则独立加载对应的安全检查。
 
+完成识别后，它只读取一个主要路线和实际命中的条件规则，不会为简单项目通读服务器部署、证书或长期运维文档。
+
 **工作方式**
 
 - 🔎 **仓库研判**
@@ -90,7 +92,7 @@
 
   适合具有明确官方安装入口的工具型仓库。`lander-new` 负责识别安装位置、官方命令和最小验证方式，不把普通附件或手工上传项目包装成服务器部署任务。
 
-`SKILL.md` 保持为薄入口，负责主流程、安全门槛和条件路由；具体规则放在一级 `references/` 中按需加载。
+`SKILL.md` 保持为调度入口：先完成项目分类，再在轻量路线或服务路线中选择一个，并按需叠加敏感信息、公网访问、Web 栈共存、脚本交接和部署记录规则。
 
 ## 📦 安装
 
@@ -169,6 +171,14 @@ lander-new/
 ├── bin/
 │   └── lander-new.mjs
 ├── references/
+│   ├── project-routing.md
+│   ├── lightweight-routes.md
+│   ├── service-routes.md
+│   ├── script-installer-handoff.md
+│   ├── secret-safety.md
+│   ├── security-and-access.md
+│   ├── managed-web-stack-conflicts.md
+│   └── artifact-contracts.md
 ├── scripts/
 │   └── preflight.sh
 ├── tests/
