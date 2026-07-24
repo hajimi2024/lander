@@ -8,6 +8,14 @@ const RESET = "\u001b[0m";
 const GRAY = "\u001b[38;5;245m";
 const WHITE = "\u001b[38;5;255m";
 const GREEN = "\u001b[38;5;46m";
+const BANNER_GRADIENT = [
+  "\u001b[38;5;255m",
+  "\u001b[38;5;252m",
+  "\u001b[38;5;250m",
+  "\u001b[38;5;248m",
+  "\u001b[38;5;246m",
+  "\u001b[38;5;244m"
+];
 
 export const BANNER = [
   "██╗      █████╗ ███╗   ██╗██████╗ ███████╗██████╗ ",
@@ -18,7 +26,7 @@ export const BANNER = [
   "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"
 ];
 
-export const DIVIDER = "──●────●────●────●────●────●────●────●──────";
+export const DIVIDER = "────────────────────────●────────────────●────────────────●──────────────";
 export const TAGLINE = "lander • AI Skills for Codex • Cursor • Grok Build";
 export const SOURCE = "hajimi2024/lander";
 
@@ -64,8 +72,8 @@ function color(text, code, enabled) {
 async function renderBanner(animated) {
   process.stdout.write("\n");
 
-  for (const line of BANNER) {
-    process.stdout.write(`${color(line, GRAY, animated)}\n`);
+  for (const [index, line] of BANNER.entries()) {
+    process.stdout.write(`${color(line, BANNER_GRADIENT[index] ?? GRAY, animated)}\n`);
     if (animated) await wait(55);
   }
 
