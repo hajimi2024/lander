@@ -32,43 +32,43 @@
 
 ## ✨ What It Does
 
-`lander-new` gives an agent a structured workflow for assessing and executing an unfamiliar GitHub repository.
+`lander-new` is a GitHub project landing advisor for agents.
 
-It identifies the project shape and official usage path first, selects a route for the target environment, and then handles configuration, execution, access, verification, and handoff. The first round is analysis-only: it does not install dependencies, connect to a server, or change the environment.
+Give it a GitHub repository, product website, or official docs page, and it starts with shallow recognition: what the project is, where the official entrypoint is, how it is meant to run, what environment it likely needs, and what risks are visible.
 
-`lander-new` starts with a lightweight workflow. Analysis expands only as task complexity grows, while sensitive information independently triggers the relevant safety checks.
+It is not an automatic deployment engine that starts changing things as soon as it sees a repository. Even when the first request asks for installation, deployment, or launch, it performs read-only analysis first and asks whether to continue after proposing a route.
 
-After classification, it loads one primary route plus only the conditional rules that actually match. Simple projects do not carry server deployment, certificate, or long-term operations guidance.
+`lander-new` starts lightweight by default. Simple projects stay concise, while complex projects expand into component mapping, environment preflight, public ingress, sensitive configuration, and handoff records. After classification, it loads one primary route plus only the conditional rules that actually match, so simple tasks do not carry unrelated guidance.
 
 **How It Works**
 
-- 🔎 **Repository assessment**
+- 🔎 **Shallow recognition**
 
-  Reads README files, official docs, installation instructions, Compose files, Dockerfiles, package manifests, and environment examples to determine the project type, official entrypoint, dependencies, and resource profile.
+  Reads the README, official docs, quick start, installation, configuration, and security entrypoints first, then returns a one-line project summary, official source, suggested route, environment needs, and visible risks.
 
-- 🧭 **Route selection**
+- 🧭 **Semantic routing**
 
-  Chooses only from officially supported paths. It prefers a stable route with fewer dependencies and lower operational risk; when direct use satisfies the goal, it does not default to development or build workflows.
+  Selects a lightweight route or service route from project evidence and the user's goal. It continues only through officially supported paths instead of forcing every repository into the same deployment workflow.
 
 - ⚖️ **Adaptive depth**
 
-  Uses a lightweight, standard, or enhanced workflow based on task complexity and operational risk. Repository size does not determine workflow depth, and a simple project still receives relevant safety checks when secrets, paid permissions, or public exposure are involved.
+  Keeps simple, low-risk projects on the shortest path. Multi-component systems, public access, account setup, payments, webhooks, certificates, or production targets receive deeper checks and confirmations.
 
 - 🔐 **Sensitive configuration warnings**
 
-  Identifies environment variables, API keys, tokens, account credentials, private keys, default credentials, and production settings required by official sources. The agent reports names, purposes, and storage locations without asking the user to paste real values into the conversation.
+  Watches for environment variables, API keys, tokens, account credentials, private keys, default credentials, debug mode, and production-switch requirements. The agent reports names, purposes, and storage locations without asking the user to paste real values into the conversation.
 
 - 🖥️ **Environment preflight**
 
-  Checks CPU, memory, disk, Docker, ports, proxies, and certificate systems before changing a remote host or long-running environment.
+  Checks CPU, memory, disk, Docker, ports, proxies, certificate systems, and existing services before changing a remote host or long-running environment.
 
 - ✅ **Stage-by-stage verification**
 
-  Verifies outcomes for the selected route: commands and minimum behavior for CLIs, target recognition for imported projects, and processes, containers, ports, application responses, and relevant persistence for running services.
+  Verifies real outcomes after each stage: CLI commands, import recognition, processes, containers, ports, HTTP/API responses, persistence, and key page states.
 
 - 📝 **Handoff summary**
 
-  Every task ends with concise results and usage guidance. Environment changes add removal instructions, while actual deployments and long-running services also receive private-by-default, redacted maintenance records.
+  After installation or deployment, it reports access entrypoints, account state, management commands, credential handling, maintenance notes, and rollback paths. Normal reports do not store plaintext passwords; temporary credentials are provided only in the current private conversation when needed.
 
 **Best-fit repositories**
 
@@ -138,7 +138,7 @@ npx skills@latest update lander-new
 Use natural language; there is no fixed sentence you need to memorize. Put a GitHub repository, product website, or official docs page after `/lander-new`:
 
 ```text
-/lander-new https://github.com/owner/repository
+/lander-new https://github.com/author/repository
 ```
 
 ```text
