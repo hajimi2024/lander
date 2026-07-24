@@ -150,4 +150,3 @@ for (const pattern of suspiciousSecrets) {
 }
 
 console.log("lander-new static validation passed");
-
