@@ -32,13 +32,13 @@
 
 ## ✨ What It Does
 
-`lander-new` is a GitHub project landing advisor for agents.
+`lander-new` is for users who are not yet comfortable reading development projects or running server deployments. Give an agent an unfamiliar GitHub project, and it helps the agent quickly explain what the project is, where it should run, and how to move through installation, deployment, verification, and handoff on a confirmed route.
 
-Give it a GitHub repository, product website, or official docs page, and it starts with shallow recognition: what the project is, where the official entrypoint is, how it is meant to run, what environment it likely needs, and what risks are visible.
+It is designed to work with an agent, not replace the agent as a universal deployment engine. You can provide a GitHub repository, product website, or official docs page; it starts with shallow recognition, then reports the project purpose, official entrypoint, suggested environment, deployment difficulty, and visible risks before asking whether to continue.
 
 It is not an automatic deployment engine that starts changing things as soon as it sees a repository. Even when the first request asks for installation, deployment, or launch, it performs read-only analysis first and asks whether to continue after proposing a route.
 
-`lander-new` starts lightweight by default. Simple projects stay concise, while complex projects expand into component mapping, environment preflight, public ingress, sensitive configuration, and handoff records. After classification, it loads one primary route plus only the conditional rules that actually match, so simple tasks do not carry unrelated guidance.
+`lander-new` starts lightweight by default. Simple projects keep only the necessary steps, while complex projects expand into component mapping, environment preflight, public ingress, sensitive configuration, and handoff records. After classification, it loads one primary route plus only the conditional rules that actually match, so simple tasks do not carry unrelated guidance.
 
 **How It Works**
 
