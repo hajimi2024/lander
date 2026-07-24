@@ -32,13 +32,13 @@
 
 ## ✨ What It Does
 
+**🎓 Project Deployment Advisor**
+
 `lander-new` is for users who are not yet comfortable reading development projects or running server deployments. Give an agent an unfamiliar GitHub project, and it helps the agent quickly explain what the project is, where it should run, and how to move through installation, deployment, verification, and handoff on a confirmed route.
 
 It is designed to work with an agent, not replace the agent as a universal deployment engine. You can provide a GitHub repository, product website, or official docs page; it starts with shallow recognition, then reports the project purpose, official entrypoint, suggested environment, deployment difficulty, and visible risks before asking whether to continue.
 
-It is not an automatic deployment engine that starts changing things as soon as it sees a repository. Even when the first request asks for installation, deployment, or launch, it performs read-only analysis first and asks whether to continue after proposing a route.
-
-`lander-new` starts lightweight by default. Simple projects keep only the necessary steps, while complex projects expand into component mapping, environment preflight, public ingress, sensitive configuration, and handoff records. After classification, it loads one primary route plus only the conditional rules that actually match, so simple tasks do not carry unrelated guidance.
+It is more like a project deployment advisor than an automatic construction crew: it helps the agent understand the project, choose a route, flag risks, and then move through deployment only after confirmation.
 
 **How It Works**
 
@@ -48,7 +48,7 @@ It is not an automatic deployment engine that starts changing things as soon as 
 
 - 🧭 **Semantic routing**
 
-  Selects a lightweight route or service route from project evidence and the user's goal. It continues only through officially supported paths instead of forcing every repository into the same deployment workflow.
+  Selects a lightweight route or service route from project evidence and the user's goal. After classification, it loads one primary route plus only the conditional rules that actually match instead of forcing every repository into the same deployment workflow.
 
 - ⚖️ **Adaptive depth**
 
