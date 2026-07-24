@@ -30,9 +30,7 @@
 
 ---
 
-## ✨ What It Does
-
-**🎓 Project Deployment Advisor**
+## 🎓 Project Deployment Advisor
 
 `lander-new` is for users who are not yet comfortable reading development projects or running server deployments. Give an agent an unfamiliar GitHub project, and it helps the agent quickly explain what the project is, where it should run, and how to move through installation, deployment, verification, and handoff on a confirmed route.
 
@@ -50,6 +48,10 @@ It is more like a project deployment advisor than an automatic construction crew
 
   Selects a lightweight route or service route from project evidence and the user's goal. After classification, it loads one primary route plus only the conditional rules that actually match instead of forcing every repository into the same deployment workflow.
 
+- ✅ **Confirmed execution**
+
+  Even when the first request asks for deployment, it completes read-only recognition and asks for confirmation first. After confirmation, it moves through installation, configuration, access, verification, and handoff in stages.
+
 - ⚖️ **Adaptive depth**
 
   Keeps simple, low-risk projects on the shortest path. Multi-component systems, public access, account setup, payments, webhooks, certificates, or production targets receive deeper checks and confirmations.
@@ -61,10 +63,6 @@ It is more like a project deployment advisor than an automatic construction crew
 - 🖥️ **Environment preflight**
 
   Checks CPU, memory, disk, Docker, ports, proxies, certificate systems, and existing services before changing a remote host or long-running environment.
-
-- ✅ **Stage-by-stage verification**
-
-  Verifies real outcomes after each stage: CLI commands, import recognition, processes, containers, ports, HTTP/API responses, persistence, and key page states.
 
 - 📝 **Handoff summary**
 
@@ -82,7 +80,11 @@ It is more like a project deployment advisor than an automatic construction crew
 
 - 📌 **Long-running VPS services**
 
-  Suitable for services that need public ingress, HTTPS, reverse proxies, DNS-01, renewal migration, and coexistence with existing sites. It confirms the current ingress and certificate systems before making changes.
+  Suitable for services that need public ingress, HTTPS, reverse proxies, DNS, certificate renewal, and coexistence with existing sites. It confirms the current ingress and certificate systems before making changes.
+
+- 🧰 **Script installers / panel-managed projects**
+
+  Suitable for projects that provide install scripts, management commands, interactive menus, or admin panels. `lander-new` reports access entrypoints, account state, credential source, management commands, and follow-up maintenance steps during handoff.
 
 - 💻 **Local trial runs**
 
