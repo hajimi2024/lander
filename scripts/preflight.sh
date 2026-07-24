@@ -1,5 +1,5 @@
 #!/bin/sh
-# Read-only conditional preflight for lander-new.
+# Read-only conditional preflight for lander.
 set +e
 
 mode=${1:-}

@@ -18,9 +18,9 @@ export const BANNER = [
   "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"
 ];
 
-export const DIVIDER = "──●────●────●────●────●────●──";
-export const TAGLINE = "lander-new • AI Skills for Codex • Cursor • Grok Build";
-export const SOURCE = "hajimi2024/lander-new";
+export const DIVIDER = "──●────●────●────●────●────●────●────●──────";
+export const TAGLINE = "lander • AI Skills for Codex • Cursor • Grok Build";
+export const SOURCE = "hajimi2024/lander";
 
 const wait = (ms) => new Promise((resolveWait) => setTimeout(resolveWait, ms));
 

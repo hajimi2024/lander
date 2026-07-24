@@ -1,4 +1,4 @@
 interface:
-  display_name: "lander-new"
+  display_name: "lander"
   short_description: "GitHub 项目研判、交互部署与安全验证"
-  default_prompt: "/lander-new 识别这个 GitHub 仓库，用中文说明官方使用方式、敏感配置风险，并分阶段引导我完成部署。"
+  default_prompt: "/lander 识别这个 GitHub 仓库，用中文说明官方使用方式、敏感配置风险，并分阶段引导我完成部署。"

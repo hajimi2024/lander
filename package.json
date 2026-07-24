@@ -1,12 +1,12 @@
 {
-  "name": "lander-new-installer",
+  "name": "lander-installer",
   "version": "0.0.0-private",
-  "description": "Animated installer entrypoint for the lander-new Agent Skill",
+  "description": "Animated installer entrypoint for the lander Agent Skill",
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
   "bin": {
-    "lander-new": "./bin/lander-new.mjs"
+    "lander": "./bin/lander.mjs"
   },
   "files": [
     "SKILL.md",

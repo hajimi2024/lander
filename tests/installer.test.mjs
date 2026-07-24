@@ -7,22 +7,22 @@ import {
   buildSkillsCommand,
   buildSpawnOptions,
   supportsAnimation
-} from "../bin/lander-new.mjs";
+} from "../bin/lander.mjs";
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
-  assert.equal(DIVIDER, "──●────●────●────●────●────●──");
-  assert.equal(TAGLINE, "lander-new • AI Skills for Codex • Cursor • Grok Build");
+  assert.equal(DIVIDER, "──●────●────●────●────●────●────●────●──────");
+  assert.equal(TAGLINE, "lander • AI Skills for Codex • Cursor • Grok Build");
 });
 
 test("installer delegates to the official Skills CLI without forcing global scope", () => {
   assert.deepEqual(buildSkillsCommand([], "win32"), {
     executable: "cmd.exe",
-    args: ["/d", "/s", "/c", "npx.cmd", "skills@latest", "add", "hajimi2024/lander-new"]
+    args: ["/d", "/s", "/c", "npx.cmd", "skills@latest", "add", "hajimi2024/lander"]
   });
   assert.deepEqual(buildSkillsCommand(["--copy"], "linux"), {
     executable: "npx",
-    args: ["skills@latest", "add", "hajimi2024/lander-new", "--copy"]
+    args: ["skills@latest", "add", "hajimi2024/lander", "--copy"]
   });
 });
 

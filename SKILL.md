@@ -1,9 +1,9 @@
 ---
-name: lander-new
+name: lander
 description: 帮助 Agent 识别 GitHub 项目的官方使用入口，并完成安装、运行、部署、导入与验证，适用于本地电脑、WSL2 和远程服务器。当用户要求让仓库可运行、可使用、可安装、可部署、可导入，或比较这些官方路径时使用。先判断目标和生命周期，再选择轻量或服务路线，并仅在出现秘密信息、公网入口、既有 Web 栈、脚本管理入口或长期运维时加载对应规则。
 ---
 
-# lander-new
+# lander
 
 将 GitHub 仓库转化为经过验证的可用项目：
 
@@ -15,13 +15,13 @@ description: 帮助 Agent 识别 GitHub 项目的官方使用入口，并完成�
 
 - 将仓库 README 和其指向的官方资料作为第一可信来源。
 - 第一轮只读取和分析，不安装、不构建、不运行项目代码、不拉取大型镜像、不连接服务器、不修改目标环境。直接读取不足时，允许按 `references/project-routing.md` 创建隔离的临时分析副本，这是首轮唯一允许的受限写入。
-- `/lander-new` 后接 GitHub 仓库、产品官网或官方 docs 时，进入第一轮浅层识别。官网或 docs 先追溯官方仓库、官方安装资料或明确维护方证据。
+- `/lander` 后接 GitHub 仓库、产品官网或官方 docs 时，进入第一轮浅层识别。官网或 docs 先追溯官方仓库、官方安装资料或明确维护方证据。
 - 即使用户首轮要求安装、部署或上线，也先完成第一轮识别并等待确认，不直接进入执行。
 - 先读取 `references/project-routing.md`；完成分类后只加载一个主要路线和实际命中的条件分支，不通读全部 references。
 - 默认从轻量深度开始。仓库规模不决定流程深度；秘密、公网、生产、高权限和现有服务冲突独立触发安全规则。
 - 在官方支持的路径中选择满足目标、依赖较少、操作稳定且风险较低的方式。直接使用已经满足目标时，不默认进入开发构建。
 - 使用用户当前语言回复，命令、代码、路径和项目名称保留原文。
-- 安装、更新或移除 `lander-new` 本身时，回答 Skills CLI 维护命令，不进入项目部署流程。全局更新使用 `npx skills@latest update lander-new -g`；项目级更新在项目目录执行 `npx skills@latest update lander-new`。
+- 安装、更新或移除 `lander` 本身时，回答 Skills CLI 维护命令，不进入项目部署流程。全局更新使用 `npx skills@latest update lander -g`；项目级更新在项目目录执行 `npx skills@latest update lander`。
 
 ## 选择主要路线
 

@@ -1,7 +1,7 @@
 import { access, readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { BANNER, DIVIDER, TAGLINE } from "../bin/lander-new.mjs";
+import { BANNER, DIVIDER, TAGLINE } from "../bin/lander.mjs";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -22,7 +22,7 @@ const requiredFiles = [
   "assets/templates/project-summary.md",
   "assets/templates/deployment-log.md",
   "assets/templates/deployment-report.md",
-  "bin/lander-new.mjs"
+  "bin/lander.mjs"
 ];
 
 for (const path of requiredFiles) {
@@ -56,7 +56,7 @@ const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 ${DIVIDER}
    ${TAGLINE}`;
 const readmeBadges = [
-  "lander--new-Agent_Skill-d1008f",
+  "lander-Agent_Skill-d1008f",
   "GitHub-Repository_Analysis-168aad",
   "Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a",
   "Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2",
@@ -66,7 +66,7 @@ const readmeBadges = [
 ];
 
 const assertions = [
-  [skill.startsWith("---\nname: lander-new\n"), "SKILL.md frontmatter must identify lander-new"],
+  [skill.startsWith("---\nname: lander\n"), "SKILL.md frontmatter must identify lander"],
   [!skill.includes("当 Agent 收到 GitHub 仓库"), "SKILL trigger must require deployment or usage intent"],
   [skill.includes("一个主要路线") && skill.includes("不通读全部 references"), "SKILL.md must enforce selective routing"],
   [skill.includes("references/lightweight-routes.md") && skill.includes("references/service-routes.md"), "SKILL.md must expose both primary routes"],
@@ -110,24 +110,24 @@ const assertions = [
   [readmeZh.includes("https://project.example.com") && readmeEn.includes("https://project.example.com"), "README must include website/docs entry examples"],
   [readmeZh.includes("第一轮只做浅层识别") && readmeZh.includes("询问是否继续安装或部署"), "Chinese README must describe shallow first-round confirmation"],
   [readmeEn.includes("first round is shallow recognition only") && readmeEn.includes("asks whether to continue into installation or deployment"), "English README must describe shallow first-round confirmation"],
-  [readmeZh.includes("npx github:hajimi2024/lander-new"), "Chinese README must show the animated installer"],
-  [readmeEn.includes("npx github:hajimi2024/lander-new"), "English README must show the animated installer"],
+  [readmeZh.includes("npx github:hajimi2024/lander"), "Chinese README must show the animated installer"],
+  [readmeEn.includes("npx github:hajimi2024/lander"), "English README must show the animated installer"],
   [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
   [readmeEn.includes(readmeBanner), "English README banner must match the installer"],
   [!readmeZh.includes("安装器会先播放"), "Chinese install section must not repeat the terminal banner"],
   [!readmeEn.includes("installer first plays"), "English install section must not repeat the terminal banner"],
   [readmeZh.includes("## ♻️ 更新"), "Chinese README must use the recycling icon for updates"],
   [readmeEn.includes("## ♻️ Update"), "English README must use the recycling icon for updates"],
-  [readmeZh.includes("npx skills@latest update lander-new -g"), "Chinese README must show the global update command"],
-  [readmeEn.includes("npx skills@latest update lander-new -g"), "English README must show the global update command"],
+  [readmeZh.includes("npx skills@latest update lander -g"), "Chinese README must show the global update command"],
+  [readmeEn.includes("npx skills@latest update lander -g"), "English README must show the global update command"],
   [readmeZh.includes("[更新](#update)") && readmeZh.includes('<a id="update"></a>'), "Chinese README update navigation must use a stable explicit anchor"],
   [readmeEn.includes("[Update](#update)") && readmeEn.includes('<a id="update"></a>'), "English README update navigation must use a stable explicit anchor"],
   [readmeBadges.every((badge) => readmeZh.includes(badge)), "Chinese README must include the capability badges"],
   [readmeBadges.every((badge) => readmeEn.includes(badge)), "English README must include the capability badges"],
   [readmeZh.includes("README.en.md"), "Chinese README must link to English"],
   [readmeEn.includes("README.md"), "English README must link to Chinese"],
-  [agentMetadata.includes('display_name: "lander-new"'), "Agent metadata must keep the lander-new identity"],
-  [agentMetadata.includes("/lander-new"), "Agent metadata must keep the public invocation"]
+  [agentMetadata.includes('display_name: "lander"'), "Agent metadata must keep the lander identity"],
+  [agentMetadata.includes("/lander"), "Agent metadata must keep the public invocation"]
 ];
 
 for (const [condition, message] of assertions) {
@@ -189,4 +189,4 @@ for (const pattern of suspiciousSecrets) {
   }
 }
 
-console.log("lander-new static validation passed");
+console.log("lander static validation passed");

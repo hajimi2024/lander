@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 lander-new
+# 🚀 lander
 
 **把 GitHub 仓库稳定转化为可运行、可部署、可导入的项目**
 
@@ -16,11 +16,11 @@
 ███████╗██║  ██║██║ ╚████║██████╔╝███████╗██║  ██║
 ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
 
-──●────●────●────●────●────●──
-   lander-new • AI Skills for Codex • Cursor • Grok Build
+──●────●────●────●────●────●────●────●──────
+   lander • AI Skills for Codex • Cursor • Grok Build
 ```
 
-![lander-new Agent Skill](https://img.shields.io/badge/lander--new-Agent_Skill-d1008f?style=flat-square)
+![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)
 ![GitHub Repository Analysis](https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square)
 ![Deployment Targets](https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square)
 ![Deployment Routes](https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square)
@@ -32,7 +32,7 @@
 
 ## 🎓 项目部署顾问
 
-`lander-new` 面向的是不熟悉项目开发和服务器部署的用户：把一个陌生 GitHub 项目交给 Agent 后，先快速看懂它是什么、适合跑在哪里，再按确认过的路线完成安装、部署、验证和交接。
+`lander` 面向的是不熟悉项目开发和服务器部署的用户：把一个陌生 GitHub 项目交给 Agent 后，先快速看懂它是什么、适合跑在哪里，再按确认过的路线完成安装、部署、验证和交接。
 
 它适合配合 Agent 使用，而不是替代 Agent 成为“万能部署器”。你可以给它 GitHub 仓库、产品官网或官方文档页；它会先做浅层识别，说明项目用途、官方入口、建议环境、部署难度和明显风险，再询问是否继续。
 
@@ -76,7 +76,7 @@
 
 - 🌐 **Web 服务、后端服务和全栈应用**
 
-  适合官方文档明确说明运行入口、依赖和配置方式的项目。`lander-new` 会根据目标环境选择本机、Docker、VPS 或项目支持的其他方式。
+  适合官方文档明确说明运行入口、依赖和配置方式的项目。`lander` 会根据目标环境选择本机、Docker、VPS 或项目支持的其他方式。
 
 - 📌 **VPS 长期运行服务**
 
@@ -84,15 +84,15 @@
 
 - 🧰 **脚本安装 / 面板管理项目**
 
-  适合提供安装脚本、管理命令、交互菜单或后台面板的项目。`lander-new` 会在交接时说明访问入口、账号状态、凭据来源、管理命令和后续维护方式。
+  适合提供安装脚本、管理命令、交互菜单或后台面板的项目。`lander` 会在交接时说明访问入口、账号状态、凭据来源、管理命令和后续维护方式。
 
 - 💻 **本机试运行项目**
 
-  适合先在当前电脑或 WSL2 中运行的小型服务、CLI 和开发工具。`lander-new` 会先确认官方命令和所需环境，再进入安装或启动阶段。
+  适合先在当前电脑或 WSL2 中运行的小型服务、CLI 和开发工具。`lander` 会先确认官方命令和所需环境，再进入安装或启动阶段。
 
 - 🧩 **Agent / MCP / 浏览器扩展 / CLI 工具**
 
-  适合具有明确官方安装入口的工具型仓库。`lander-new` 负责识别安装位置、官方命令和最小验证方式，不把普通附件或手工上传项目包装成服务器部署任务。
+  适合具有明确官方安装入口的工具型仓库。`lander` 负责识别安装位置、官方命令和最小验证方式，不把普通附件或手工上传项目包装成服务器部署任务。
 
 `SKILL.md` 保持为调度入口：先完成项目分类，再在轻量路线或服务路线中选择一个，并按需叠加敏感信息、公网访问、Web 栈共存、脚本交接和部署记录规则。
 
@@ -101,16 +101,16 @@
 在终端执行：
 
 ```powershell
-npx github:hajimi2024/lander-new
+npx github:hajimi2024/lander
 ```
 
-随后进入官方 Skills CLI。它会读取仓库、识别 `lander-new`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
+随后进入官方 Skills CLI。它会读取仓库、识别 `lander`，并根据当前环境确认目标 Agent、安装范围和安装方式。仓库仍为私有状态时，请确保当前电脑已配置拥有该仓库访问权限的 GitHub 凭据。
 
 ## 🧭 交互选择
 
 官方 Skills CLI 会根据当前环境决定哪些步骤需要询问：
 
-- **Skill**：仓库只有一个 `lander-new`，发现后直接使用。
+- **Skill**：仓库只有一个 `lander`，发现后直接使用。
 - **Agent**：检测到多个 Agent 时显示选择列表；只检测到一个时可能直接选中。完整支持列表由 Skills CLI 维护。
 - **Scope**：未通过参数预先指定且目标 Agent 支持全局安装时，询问 Project / Global。
 - **Method**：多个不同安装目录需要分发时，询问 Symlink / Copy；单一目录时可能直接使用 Copy。
@@ -121,10 +121,10 @@ npx github:hajimi2024/lander-new
 
 ## ♻️ 更新
 
-如果 GitHub 仓库中的 `lander-new` 有新版本，并且你之前按全局方式安装，在终端执行：
+如果 GitHub 仓库中的 `lander` 有新版本，并且你之前按全局方式安装，在终端执行：
 
 ```powershell
-npx skills@latest update lander-new -g
+npx skills@latest update lander -g
 ```
 
 Skills CLI 会重新获取来源仓库，并更新本机已安装的 Skill 文件。更新后如果 Agent 没有立即发现新版本，请重启目标 Agent 或新建任务。
@@ -132,24 +132,24 @@ Skills CLI 会重新获取来源仓库，并更新本机已安装的 Skill 文�
 如果你之前安装到某个项目目录，请进入该项目后执行：
 
 ```powershell
-npx skills@latest update lander-new
+npx skills@latest update lander
 ```
 
 ## 💬 使用方式
 
-使用自然语言即可，不需要记固定句式。`/lander-new` 后面可以直接跟 GitHub 仓库、产品官网或官方文档页：
+使用自然语言即可，不需要记固定句式。`/lander` 后面可以直接跟 GitHub 仓库、产品官网或官方文档页：
 
 ```text
-/lander-new https://github.com/author/repository
+/lander https://github.com/author/repository
 ```
 
 ```text
-/lander-new https://project.example.com
+/lander https://project.example.com
 ```
 
-第一轮只做浅层识别：说明项目用途、官方入口、建议路线、建议环境和风险点，然后询问是否继续安装或部署。即使你第一句话已经要求部署，`lander-new` 也会先完成这一轮确认，再进入后续执行。
+第一轮只做浅层识别：说明项目用途、官方入口、建议路线、建议环境和风险点，然后询问是否继续安装或部署。即使你第一句话已经要求部署，`lander` 也会先完成这一轮确认，再进入后续执行。
 
-也可以不用显式命令，直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander-new`。
+也可以不用显式命令，直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander`。
 
 ## 🛡️ 安全边界
 
@@ -166,14 +166,14 @@ npx skills@latest update lander-new
 这是一个单 Skill 仓库，根目录 `SKILL.md` 是可安装入口。终端包装器只提供动画并转交官方 Skills CLI，不改变 Skill 发现结构。
 
 ```text
-lander-new/
+lander/
 ├── SKILL.md
 ├── README.md
 ├── README.en.md
 ├── agents/
 ├── assets/templates/
 ├── bin/
-│   └── lander-new.mjs
+│   └── lander.mjs
 ├── references/
 │   ├── project-routing.md
 │   ├── lightweight-routes.md

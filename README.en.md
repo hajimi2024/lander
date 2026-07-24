@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 lander-new
+# 🚀 lander
 
 **Turn a GitHub repository into a runnable, deployable, or importable project through a controlled workflow**
 
@@ -16,11 +16,11 @@
 ███████╗██║  ██║██║ ╚████║██████╔╝███████╗██║  ██║
 ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
 
-──●────●────●────●────●────●──
-   lander-new • AI Skills for Codex • Cursor • Grok Build
+──●────●────●────●────●────●────●────●──────
+   lander • AI Skills for Codex • Cursor • Grok Build
 ```
 
-![lander-new Agent Skill](https://img.shields.io/badge/lander--new-Agent_Skill-d1008f?style=flat-square)
+![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)
 ![GitHub Repository Analysis](https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square)
 ![Deployment Targets](https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square)
 ![Deployment Routes](https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square)
@@ -32,7 +32,7 @@
 
 ## 🎓 Project Deployment Advisor
 
-`lander-new` is for users who are not yet comfortable reading development projects or running server deployments. Give an agent an unfamiliar GitHub project, and it helps the agent quickly explain what the project is, where it should run, and how to move through installation, deployment, verification, and handoff on a confirmed route.
+`lander` is for users who are not yet comfortable reading development projects or running server deployments. Give an agent an unfamiliar GitHub project, and it helps the agent quickly explain what the project is, where it should run, and how to move through installation, deployment, verification, and handoff on a confirmed route.
 
 It is designed to work with an agent, not replace the agent as a universal deployment engine. You can provide a GitHub repository, product website, or official docs page; it starts with shallow recognition, then reports the project purpose, official entrypoint, suggested environment, deployment difficulty, and visible risks before asking whether to continue.
 
@@ -72,11 +72,11 @@ It is more like a project deployment advisor than an automatic construction crew
 
 - 🐳 **Docker / Compose self-hosted services**
 
-  Suitable for API services, web apps, database-backed stacks, and personal tools. Before startup, `lander-new` checks Compose, ports, mounts, permissions, persistence, and secret injection; after startup, it verifies container health and application responses.
+  Suitable for API services, web apps, database-backed stacks, and personal tools. Before startup, `lander` checks Compose, ports, mounts, permissions, persistence, and secret injection; after startup, it verifies container health and application responses.
 
 - 🌐 **Web, backend, and full-stack applications**
 
-  Suitable for projects whose official documentation defines the runtime entrypoint, dependencies, and configuration. `lander-new` selects local execution, Docker, VPS, or another supported route based on the target environment.
+  Suitable for projects whose official documentation defines the runtime entrypoint, dependencies, and configuration. `lander` selects local execution, Docker, VPS, or another supported route based on the target environment.
 
 - 📌 **Long-running VPS services**
 
@@ -84,15 +84,15 @@ It is more like a project deployment advisor than an automatic construction crew
 
 - 🧰 **Script installers / panel-managed projects**
 
-  Suitable for projects that provide install scripts, management commands, interactive menus, or admin panels. `lander-new` reports access entrypoints, account state, credential source, management commands, and follow-up maintenance steps during handoff.
+  Suitable for projects that provide install scripts, management commands, interactive menus, or admin panels. `lander` reports access entrypoints, account state, credential source, management commands, and follow-up maintenance steps during handoff.
 
 - 💻 **Local trial runs**
 
-  Suitable for small services, CLIs, and developer tools that should run on the current computer or in WSL2 first. `lander-new` confirms the official command and required environment before installation or startup.
+  Suitable for small services, CLIs, and developer tools that should run on the current computer or in WSL2 first. `lander` confirms the official command and required environment before installation or startup.
 
 - 🧩 **Agent / MCP / browser extension / CLI tools**
 
-  Suitable for tool repositories with a clear official installation entrypoint. `lander-new` identifies the destination, official command, and minimum verification path without treating ordinary attachments or manual uploads as server deployments.
+  Suitable for tool repositories with a clear official installation entrypoint. `lander` identifies the destination, official command, and minimum verification path without treating ordinary attachments or manual uploads as server deployments.
 
 `SKILL.md` stays a thin dispatcher. It classifies the project, selects either the lightweight or service route, and conditionally adds rules for secrets, public access, existing web stacks, script handoff, and deployment records.
 
@@ -101,16 +101,16 @@ It is more like a project deployment advisor than an automatic construction crew
 Run this in your terminal:
 
 ```powershell
-npx github:hajimi2024/lander-new
+npx github:hajimi2024/lander
 ```
 
-The official Skills CLI then reads the repository, detects `lander-new`, and confirms the target agent, installation scope, and installation method as needed for the current environment. While the repository remains private, the computer must have GitHub credentials with access to it.
+The official Skills CLI then reads the repository, detects `lander`, and confirms the target agent, installation scope, and installation method as needed for the current environment. While the repository remains private, the computer must have GitHub credentials with access to it.
 
 ## 🧭 Interactive Choices
 
 The official Skills CLI decides which prompts are required for the current environment:
 
-- **Skill**: this repository contains only `lander-new`, so the single discovered skill is used directly.
+- **Skill**: this repository contains only `lander`, so the single discovered skill is used directly.
 - **Agent**: multiple detected agents produce a selection list; one detected agent may be selected automatically. The complete list is maintained by Skills CLI.
 - **Scope**: Project / Global is prompted when the scope was not fixed by a flag and the selected agent supports global installation.
 - **Method**: Symlink / Copy is prompted when multiple distinct install directories are involved; a single directory may use Copy directly.
@@ -121,10 +121,10 @@ The exact interface therefore depends on the agents installed on the computer an
 
 ## ♻️ Update
 
-When this repository has a newer version of `lander-new` and you installed it globally, run:
+When this repository has a newer version of `lander` and you installed it globally, run:
 
 ```powershell
-npx skills@latest update lander-new -g
+npx skills@latest update lander -g
 ```
 
 Skills CLI fetches the source repository again and updates the installed Skill files on this computer. Restart the target agent or start a new task if the update is not discovered immediately.
@@ -132,24 +132,24 @@ Skills CLI fetches the source repository again and updates the installed Skill f
 If you installed it into a project, run this from that project directory instead:
 
 ```powershell
-npx skills@latest update lander-new
+npx skills@latest update lander
 ```
 
 ## 💬 Usage
 
-Use natural language; there is no fixed sentence you need to memorize. Put a GitHub repository, product website, or official docs page after `/lander-new`:
+Use natural language; there is no fixed sentence you need to memorize. Put a GitHub repository, product website, or official docs page after `/lander`:
 
 ```text
-/lander-new https://github.com/author/repository
+/lander https://github.com/author/repository
 ```
 
 ```text
-/lander-new https://project.example.com
+/lander https://project.example.com
 ```
 
-The first round is shallow recognition only: it explains what the project does, the official entrypoint, the recommended route, the suggested environment, and visible risks, then asks whether to continue into installation or deployment. Even when the first request asks for deployment, `lander-new` completes this confirmation round before execution.
+The first round is shallow recognition only: it explains what the project does, the official entrypoint, the recommended route, the suggested environment, and visible risks, then asks whether to continue into installation or deployment. Even when the first request asks for deployment, `lander` completes this confirmation round before execution.
 
-You can also skip the explicit command and describe the goal naturally. For tasks involving GitHub project assessment, installation, deployment, verification, or import, an agent can select `lander-new` from its Skill description.
+You can also skip the explicit command and describe the goal naturally. For tasks involving GitHub project assessment, installation, deployment, verification, or import, an agent can select `lander` from its Skill description.
 
 ## 🛡️ Safety Boundaries
 
@@ -166,14 +166,14 @@ You can also skip the explicit command and describe the goal naturally. For task
 This is a single Skill repository. The root `SKILL.md` is the installable entrypoint. The terminal wrapper only adds the animation and delegates to the official Skills CLI.
 
 ```text
-lander-new/
+lander/
 ├── SKILL.md
 ├── README.md
 ├── README.en.md
 ├── agents/
 ├── assets/templates/
 ├── bin/
-│   └── lander-new.mjs
+│   └── lander.mjs
 ├── references/
 │   ├── project-routing.md
 │   ├── lightweight-routes.md
