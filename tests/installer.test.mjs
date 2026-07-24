@@ -11,7 +11,7 @@ import {
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
-  assert.equal(DIVIDER, "──●────────────●────────────●─────●──────●────────────────");
+  assert.equal(DIVIDER, "─────●─────────────●─────────────●────────●───────●───────");
   assert.equal((DIVIDER.match(/●/g) ?? []).length, 5);
   assert.equal(TAGLINE, "• Lander • Any Agent Skills  • Codex • Cursor • Grok");
   assert.match(TAGLINE, /Lander/);

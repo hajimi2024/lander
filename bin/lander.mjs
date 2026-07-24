@@ -26,7 +26,7 @@ export const BANNER = [
   "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"
 ];
 
-export const DIVIDER = "──●────────────●────────────●─────●──────●────────────────";
+export const DIVIDER = "─────●─────────────●─────────────●────────●───────●───────";
 export const TAGLINE = "• Lander • Any Agent Skills  • Codex • Cursor • Grok";
 export const SOURCE = "hajimi2024/lander";
 
