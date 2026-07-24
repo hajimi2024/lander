@@ -196,4 +196,4 @@ lander/
 
 ## 📄 License
 
-No license has been selected yet. Do not treat this repository as freely redistributable until a license is added.
+MIT License. See [LICENSE](LICENSE) for details.

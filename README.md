@@ -196,4 +196,4 @@ lander/
 
 ## 📄 License
 
-当前仓库尚未选择 License。在明确授权协议前，请不要默认将它视为可自由再分发的软件。
+MIT License. 详情见 [LICENSE](LICENSE)。

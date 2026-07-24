@@ -3,7 +3,7 @@
   "version": "0.0.0-private",
   "description": "Animated installer entrypoint for the lander Agent Skill",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "lander": "./bin/lander.mjs"
