@@ -26,8 +26,8 @@ export const BANNER = [
   "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"
 ];
 
-export const DIVIDER = "────────────────────────●────────────────●────────────────●──────────────";
-export const TAGLINE = "lander • AI Skills for Codex • Cursor • Grok Build";
+export const DIVIDER = "──────────────●─────●──────●──────────";
+export const TAGLINE = "• Lander • Agent Skills  • Codex • Cursor • Grok Build";
 export const SOURCE = "hajimi2024/lander";
 
 const wait = (ms) => new Promise((resolveWait) => setTimeout(resolveWait, ms));
@@ -91,7 +91,7 @@ async function renderBanner(animated) {
     process.stdout.write(`${DIVIDER}\n`);
   }
 
-  process.stdout.write(`   ${color(TAGLINE, WHITE, animated)}\n\n`);
+  process.stdout.write(`${color(TAGLINE, WHITE, animated)}\n\n`);
   if (animated) await wait(180);
   process.stdout.write(`${color("◇", GREEN, animated)} Starting Skills CLI\n\n`);
 }

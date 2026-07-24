@@ -54,7 +54,7 @@ const report = await read("assets/templates/deployment-report.md");
 const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 
 ${DIVIDER}
-   ${TAGLINE}`;
+${TAGLINE}`;
 const readmeBadges = [
   "lander-Agent_Skill-d1008f",
   "GitHub-Repository_Analysis-168aad",

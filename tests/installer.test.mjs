@@ -11,9 +11,11 @@ import {
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
-  assert.equal(DIVIDER, "────────────────────────●────────────────●────────────────●──────────────");
+  assert.equal(DIVIDER, "──────────────●─────●──────●──────────");
   assert.equal((DIVIDER.match(/●/g) ?? []).length, 3);
-  assert.equal(TAGLINE, "lander • AI Skills for Codex • Cursor • Grok Build");
+  assert.equal(TAGLINE, "• Lander • Agent Skills  • Codex • Cursor • Grok Build");
+  assert.match(TAGLINE, /Lander/);
+  assert.match(TAGLINE, /Agent Skills/);
   assert.match(TAGLINE, /Codex/);
   assert.match(TAGLINE, /Cursor/);
   assert.match(TAGLINE, /Grok Build/);
