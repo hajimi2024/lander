@@ -8,7 +8,9 @@
 
 </div>
 
-```text
+<div align="center">
+
+<pre align="center"><code>
 ██╗      █████╗ ███╗   ██╗██████╗ ███████╗██████╗
 ██║     ██╔══██╗████╗  ██║██╔══██╗██╔════╝██╔══██╗
 ██║     ███████║██╔██╗ ██║██║  ██║█████╗  ██████╔╝
@@ -18,15 +20,20 @@
 
 ─────●─────────────●─────────────●────────●───────●───────
 • Lander • Any Agent Skills  • Codex • Cursor • Grok
-```
+</code></pre>
 
-![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)
-![GitHub Repository Analysis](https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square)
-![Deployment Targets](https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square)
-![Deployment Routes](https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square)
-![Guided Workflow](https://img.shields.io/badge/Workflow-Guided_Deployment-d97706?style=flat-square)
-![Security Preflight](https://img.shields.io/badge/Security-Preflight_First-b91c1c?style=flat-square)
-![Single Skill](https://img.shields.io/badge/Repository-Single_Skill-4f46e5?style=flat-square)
+<p>
+  <img alt="lander Agent Skill" src="https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square">
+  <img alt="GitHub Repository Analysis" src="https://img.shields.io/badge/GitHub-Repository_Analysis-168aad?style=flat-square">
+  <img alt="Deployment Targets" src="https://img.shields.io/badge/Targets-Local_%E2%80%A2_WSL2_%E2%80%A2_VPS-16a34a?style=flat-square">
+  <br>
+  <img alt="Deployment Routes" src="https://img.shields.io/badge/Routes-Docker_%E2%80%A2_Compose_%E2%80%A2_Native-0891b2?style=flat-square">
+  <img alt="Guided Workflow" src="https://img.shields.io/badge/Workflow-Guided_Deployment-d97706?style=flat-square">
+  <img alt="Security Preflight" src="https://img.shields.io/badge/Security-Preflight_First-b91c1c?style=flat-square">
+  <img alt="Single Skill" src="https://img.shields.io/badge/Repository-Single_Skill-4f46e5?style=flat-square">
+</p>
+
+</div>
 
 ---
 
