@@ -123,4 +123,3 @@ Docker/Compose 启动前检查配置有效性、实际可拉取的镜像标识�
 - `references/artifact-contracts.md`：记录位置、字段和脱敏规则。
 - `scripts/preflight.sh`：只读的 `basic`、`docker`、`ingress` 和 `web-stack` 检查。
 - `assets/templates/`：在规定生命周期节点使用的 Markdown 模板。
-
