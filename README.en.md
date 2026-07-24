@@ -94,8 +94,6 @@ It is more like a project deployment advisor than an automatic construction crew
 
   Suitable for tool repositories with a clear official installation entrypoint. `lander` identifies the destination, official command, and minimum verification path without treating ordinary attachments or manual uploads as server deployments.
 
-`SKILL.md` stays a thin dispatcher. It classifies the project, selects either the lightweight or service route, and conditionally adds rules for secrets, public access, existing web stacks, script handoff, and deployment records.
-
 ## 📦 Install
 
 Run this in your terminal:
