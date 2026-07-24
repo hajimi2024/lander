@@ -10,7 +10,11 @@
 
 <div align="center">
 
-<pre align="center"><code>
+<table align="center">
+<tr>
+<td>
+
+<pre><code>
 ██╗      █████╗ ███╗   ██╗██████╗ ███████╗██████╗
 ██║     ██╔══██╗████╗  ██║██╔══██╗██╔════╝██╔══██╗
 ██║     ███████║██╔██╗ ██║██║  ██║█████╗  ██████╔╝
@@ -21,6 +25,10 @@
 ─────●─────────────●─────────────●────────●───────●───────
 • Lander • Any Agent Skills  • Codex • Cursor • Grok
 </code></pre>
+
+</td>
+</tr>
+</table>
 
 <p>
   <img alt="lander Agent Skill" src="https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square">
