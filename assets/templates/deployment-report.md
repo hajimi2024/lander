@@ -5,12 +5,15 @@
 - Repository：`{{REPOSITORY}}`
 - 状态：{{STATUS}}
 - 版本/commit：`{{VERSION_OR_COMMIT}}`
+- 上游维护与生产支持状态：{{UPSTREAM_STATUS}}
 - 实际采用路线：{{SELECTED_ROUTE}}
 - 执行深度：{{EXECUTION_DEPTH}}
 - 目标：`{{TARGET}}`
 - 目录：`{{DIRECTORY}}`
 - 组件与依赖：{{COMPONENTS}}
 - 验证结果：{{VERIFICATION_RESULTS}}
+- 已验证范围：{{VERIFIED_SCOPE}}
+- 未验证或阻塞范围：{{UNVERIFIED_OR_BLOCKED_SCOPE}}
 - 使用与访问方式：{{USAGE_AND_ACCESS}}
 - 环境修改：{{ENVIRONMENT_CHANGES}}
 - 启动、停止与更新：{{OPERATIONS}}
@@ -25,3 +28,4 @@
 - 剩余风险：{{RISKS}}
 - 下一步：{{NEXT_STEP}}
 - 更新时间：`{{UPDATED_AT}}`
+
