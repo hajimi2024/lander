@@ -16,8 +16,8 @@
 ███████╗██║  ██║██║ ╚████║██████╔╝███████╗██║  ██║
 ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝
 
-──────────────●─────●──────●──────────────────
-• Lander • Agent Skills  • Codex • Cursor • Grok Build
+──●─────────●─────────●────●─────●───
+• Lander • Any Agent Skills  • Codex • Cursor • Grok
 ```
 
 ![lander Agent Skill](https://img.shields.io/badge/lander-Agent_Skill-d1008f?style=flat-square)

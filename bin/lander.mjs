@@ -26,8 +26,8 @@ export const BANNER = [
   "╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝"
 ];
 
-export const DIVIDER = "──────────────●─────●──────●──────────────────";
-export const TAGLINE = "• Lander • Agent Skills  • Codex • Cursor • Grok Build";
+export const DIVIDER = "──●─────────●─────────●────●─────●───";
+export const TAGLINE = "• Lander • Any Agent Skills  • Codex • Cursor • Grok";
 export const SOURCE = "hajimi2024/lander";
 
 const wait = (ms) => new Promise((resolveWait) => setTimeout(resolveWait, ms));

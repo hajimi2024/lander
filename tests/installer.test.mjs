@@ -11,14 +11,14 @@ import {
 
 test("banner contains the requested identity and subtitle", () => {
   assert.equal(BANNER.length, 6);
-  assert.equal(DIVIDER, "──────────────●─────●──────●──────────────────");
-  assert.equal((DIVIDER.match(/●/g) ?? []).length, 3);
-  assert.equal(TAGLINE, "• Lander • Agent Skills  • Codex • Cursor • Grok Build");
+  assert.equal(DIVIDER, "──●─────────●─────────●────●─────●───");
+  assert.equal((DIVIDER.match(/●/g) ?? []).length, 5);
+  assert.equal(TAGLINE, "• Lander • Any Agent Skills  • Codex • Cursor • Grok");
   assert.match(TAGLINE, /Lander/);
-  assert.match(TAGLINE, /Agent Skills/);
+  assert.match(TAGLINE, /Any Agent Skills/);
   assert.match(TAGLINE, /Codex/);
   assert.match(TAGLINE, /Cursor/);
-  assert.match(TAGLINE, /Grok Build/);
+  assert.match(TAGLINE, /Grok/);
 });
 
 test("installer delegates to the official Skills CLI without forcing global scope", () => {
