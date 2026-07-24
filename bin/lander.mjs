@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from "node:child_process";
+import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 
@@ -127,10 +128,25 @@ export async function main(extraArgs = process.argv.slice(2)) {
   });
 }
 
-const isDirectRun =
-  process.argv[1] !== undefined &&
-  resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url));
+function realpathOrResolve(path, realpath = realpathSync.native) {
+  try {
+    return resolve(realpath(path));
+  } catch {
+    return resolve(path);
+  }
+}
 
-if (isDirectRun) {
+export function isDirectRunPath(
+  argvPath,
+  modulePath = fileURLToPath(import.meta.url),
+  realpath = realpathSync.native
+) {
+  return (
+    argvPath !== undefined &&
+    realpathOrResolve(argvPath, realpath) === realpathOrResolve(modulePath, realpath)
+  );
+}
+
+if (isDirectRunPath(process.argv[1])) {
   process.exitCode = await main();
 }
