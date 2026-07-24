@@ -34,6 +34,7 @@ const readmeEn = await read("README.en.md");
 const recognition = await read("references/project-recognition.md");
 const strategies = await read("references/deployment-strategies.md");
 const security = await read("references/secret-safety.md");
+const accessRules = await read("references/security-and-access.md");
 const artifacts = await read("references/artifact-contracts.md");
 const summary = await read("assets/templates/project-summary.md");
 const report = await read("assets/templates/deployment-report.md");
@@ -60,11 +61,18 @@ const assertions = [
   [skill.includes("不得开放公网"), "SKILL.md must include a public exposure gate"],
   [recognition.includes("## 任务路径"), "project recognition must classify the user's task path"],
   [recognition.includes("## 复杂度与风险"), "project recognition must assess complexity and risk separately"],
+  [recognition.includes("## 可维护性与生产支持"), "project recognition must separate runnable code from production support"],
   [strategies.includes("轻量流程") && strategies.includes("标准流程") && strategies.includes("增强流程"), "execution strategies must define all adaptive depths"],
   [strategies.includes("只验证当前路线应有的结果"), "execution strategies must use route-specific verification"],
+  [strategies.includes("不要从 Git tag 或 Release 名机械推导容器 tag"), "container image tags must be verified instead of inferred"],
+  [strategies.includes("空 bind mount 可能遮蔽"), "Docker mounts must account for image-seeded data"],
+  [strategies.includes("先修正验证探针"), "verification failures must distinguish probe defects from application defects"],
   [security.includes("默认凭据"), "secret-safety must cover default credentials"],
+  [security.includes("固定默认凭据") && security.includes("首次初始化流程"), "secret-safety must distinguish default credentials from first-run setup"],
   [security.includes("开发到生产"), "secret-safety must cover production transition"],
   [security.includes("安全风险与项目复杂度分开判断"), "secret-safety must override lightweight execution when needed"],
+  [accessRules.includes("不能代替身份验证"), "hidden paths and ports must not replace authentication"],
+  [accessRules.includes("内网/元数据访问边界"), "high-cost network tools must define an outbound access boundary"],
   [artifacts.includes("## 对话交接简报"), "artifact contracts must require a conversational handoff"],
   [artifacts.includes("轻量安装、导入、CLI"), "artifact contracts must avoid deployment records for lightweight tasks"],
   [artifacts.includes("即使创建或修改了临时文件"), "temporary file changes must not force deployment records"],
@@ -72,6 +80,8 @@ const assertions = [
   [summary.includes("执行深度"), "project summary must record execution depth"],
   [summary.includes("组件关系（如适用）"), "project summary must keep topology conditional"],
   [report.includes("验证结果"), "deployment report must record verification outcomes"],
+  [report.includes("上游维护与生产支持状态"), "deployment report must record upstream support status"],
+  [report.includes("未验证或阻塞范围"), "deployment report must separate verified and blocked scope"],
   [report.includes("撤销或恢复方式"), "deployment report must record rollback or removal guidance"],
   [report.includes("默认凭据处理状态"), "deployment report must record credential status"],
   [readmeZh.includes("⚖️ **自适应深度**"), "Chinese README must describe adaptive depth"],
@@ -101,6 +111,7 @@ const publicText = [
   recognition,
   strategies,
   security,
+  accessRules,
   artifacts,
   summary,
   report
@@ -139,3 +150,4 @@ for (const pattern of suspiciousSecrets) {
 }
 
 console.log("lander-new static validation passed");
+
