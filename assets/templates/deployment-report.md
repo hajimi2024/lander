@@ -15,11 +15,13 @@
 - 已验证范围：{{VERIFIED_SCOPE}}
 - 未验证或阻塞范围：{{UNVERIFIED_OR_BLOCKED_SCOPE}}
 - 使用与访问方式：{{USAGE_AND_ACCESS}}
+- 浏览器安全状态（如适用）：{{BROWSER_SECURITY_STATUS}}
 - 环境修改：{{ENVIRONMENT_CHANGES}}
 - 启动、停止与更新：{{OPERATIONS}}
 - 撤销或恢复方式：{{ROLLBACK_OR_REMOVAL}}
 - 端口与内部入口（如适用）：{{PORTS_AND_INTERNAL_ROUTES}}
 - 持久化与备份（如适用）：{{PERSISTENCE_AND_BACKUP}}
+- 资源余量（如适用）：{{RESOURCE_MARGIN}}
 - 敏感配置保存位置：{{SECRET_LOCATIONS}}
 - 敏感文件权限：{{SECRET_PERMISSIONS}}
 - 默认凭据处理状态：{{DEFAULT_CREDENTIALS_STATUS}}

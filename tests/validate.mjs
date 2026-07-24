@@ -36,7 +36,7 @@ for (const legacy of ["project-recognition.md", "deployment-strategies.md"]) {
   }
 }
 
-const read = async (path) => readFile(join(root, path), "utf8");
+const read = async (path) => (await readFile(join(root, path), "utf8")).replace(/\r\n/g, "\n");
 const skill = await read("SKILL.md");
 const readmeZh = await read("README.md");
 const readmeEn = await read("README.en.md");
