@@ -5,7 +5,7 @@
 1. 仓库 README、Installation/Getting Started、Security 和 `AGENTS.md`。
 2. README 引用的官方 docs、部署说明和配置说明。
 3. 官方部署文件、配置样例和包管理清单。
-4. 必要的 Release、迁移说明、维护者回复和相关源码。
+4. 必要的 Release、镜像发布工作流、迁移说明、维护者回复和相关源码。
 5. 第三方资料只作为辅助证据。
 
 默认不要读取所有层级。
@@ -14,7 +14,7 @@
 
 读取 README、安装说明，以及其中链接的必要官方 docs。按需检查 Compose、Dockerfile、`.env.example`、配置样例、`.gitignore`、包管理清单和 README 明确提到的服务或安装器定义。
 
-特别留意 Configuration、Security、Production、Authentication、First Run、Default Credentials、Environment Variables 等章节。
+特别留意 Configuration、Security、Production、Authentication、First Run、Default Credentials、Environment Variables、Maintenance Status 和 Upgrade/Migration 等章节。
 
 只有直接读取无法获得核心文件时才临时克隆。临时副本只用于分析：不安装依赖、不构建、不拉取镜像、不运行项目代码、不修改目标环境。分析后删除，除非用户将其选为正式目录。
 
@@ -49,6 +49,14 @@ Dockerfile 或 Compose 只是证据。只有官方推荐 Docker，或它明显�
 
 大型仓库有可靠的直接使用入口时可以保持轻量。简单项目只要出现风险信号，就加载对应安全规则，但不添加与任务无关的检查。
 
+## 可维护性与生产支持
+
+- 记录仓库是否明确标注停止维护、实验性、仅供个人使用或不建议生产。
+- 区分“代码可以运行”“官方仍支持部署”和“已经达到生产门槛”，三者不能互相替代。
+- 检查最新稳定 Release、最近维护时间、升级或迁移入口，以及官方镜像是否仍可获取。
+- README、Compose 注释和源码行为冲突时，以可执行文件和必要源码核验真实行为，并明确报告冲突。
+- 停止维护或缺少关键生产路径不一定阻止隔离试运行，但必须降低成功结论，不得宣布生产就绪。
+
 ## 资源判断
 
 - 官方给出最低或推荐配置时采用官方说明。
@@ -81,5 +89,7 @@ Dockerfile 或 Compose 只是证据。只有官方推荐 Docker，或它明显�
 
 - 官方文件互相矛盾或缺少必要信息；
 - 目标架构或版本兼容性不明确；
+- Release tag、容器 tag、包版本或发布渠道的对应关系不明确；
 - 当前证据无法解释已经观察到的错误；
 - 必须理解一键脚本生成配置或处理凭据的实际行为。
+
