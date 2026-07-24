@@ -76,4 +76,3 @@ $CODEX_HOME/deployment-records/<owner>--<repo>/<target>/
 - 优先记录简洁事实。
 - 已知时区时使用包含时区的 ISO 日期。
 - 公开副本不记录秘密存放位置。
-
