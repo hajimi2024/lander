@@ -38,6 +38,8 @@ It identifies the project shape and official usage path first, selects a route f
 
 `lander-new` starts with a lightweight workflow. Analysis expands only as task complexity grows, while sensitive information independently triggers the relevant safety checks.
 
+After classification, it loads one primary route plus only the conditional rules that actually match. Simple projects do not carry server deployment, certificate, or long-term operations guidance.
+
 **How It Works**
 
 - 🔎 **Repository assessment**
@@ -90,7 +92,7 @@ It identifies the project shape and official usage path first, selects a route f
 
   Suitable for tool repositories with a clear official installation entrypoint. `lander-new` identifies the destination, official command, and minimum verification path without treating ordinary attachments or manual uploads as server deployments.
 
-`SKILL.md` stays thin. It carries the main workflow, safety gates, and routing rules, while detailed guidance lives in first-level `references/` files.
+`SKILL.md` stays a thin dispatcher. It classifies the project, selects either the lightweight or service route, and conditionally adds rules for secrets, public access, existing web stacks, script handoff, and deployment records.
 
 ## 📦 Install
 
@@ -169,6 +171,14 @@ lander-new/
 ├── bin/
 │   └── lander-new.mjs
 ├── references/
+│   ├── project-routing.md
+│   ├── lightweight-routes.md
+│   ├── service-routes.md
+│   ├── script-installer-handoff.md
+│   ├── secret-safety.md
+│   ├── security-and-access.md
+│   ├── managed-web-stack-conflicts.md
+│   └── artifact-contracts.md
 ├── scripts/
 │   └── preflight.sh
 ├── tests/

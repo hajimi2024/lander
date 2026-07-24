@@ -1,4 +1,4 @@
-import { readFile, access } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { BANNER, DIVIDER, TAGLINE } from "../bin/lander-new.mjs";
@@ -10,8 +10,10 @@ const requiredFiles = [
   "README.md",
   "README.en.md",
   "agents/openai.yaml",
-  "references/project-recognition.md",
-  "references/deployment-strategies.md",
+  "references/project-routing.md",
+  "references/lightweight-routes.md",
+  "references/service-routes.md",
+  "references/script-installer-handoff.md",
   "references/secret-safety.md",
   "references/security-and-access.md",
   "references/managed-web-stack-conflicts.md",
@@ -27,13 +29,25 @@ for (const path of requiredFiles) {
   await access(join(root, path));
 }
 
+const referenceFiles = await readdir(join(root, "references"));
+for (const legacy of ["project-recognition.md", "deployment-strategies.md"]) {
+  if (referenceFiles.includes(legacy)) {
+    throw new Error(`Legacy broad reference must be removed: ${legacy}`);
+  }
+}
+
 const read = async (path) => readFile(join(root, path), "utf8");
 const skill = await read("SKILL.md");
 const readmeZh = await read("README.md");
 const readmeEn = await read("README.en.md");
-const recognition = await read("references/project-recognition.md");
-const strategies = await read("references/deployment-strategies.md");
-const security = await read("references/secret-safety.md");
+const agentMetadata = await read("agents/openai.yaml");
+const routing = await read("references/project-routing.md");
+const lightweight = await read("references/lightweight-routes.md");
+const service = await read("references/service-routes.md");
+const scriptHandoff = await read("references/script-installer-handoff.md");
+const secrets = await read("references/secret-safety.md");
+const accessRules = await read("references/security-and-access.md");
+const webStack = await read("references/managed-web-stack-conflicts.md");
 const artifacts = await read("references/artifact-contracts.md");
 const summary = await read("assets/templates/project-summary.md");
 const report = await read("assets/templates/deployment-report.md");
@@ -53,29 +67,43 @@ const readmeBadges = [
 
 const assertions = [
   [skill.startsWith("---\nname: lander-new\n"), "SKILL.md frontmatter must identify lander-new"],
-  [skill.includes("## 自适应深度"), "SKILL.md must define adaptive execution depth"],
-  [skill.includes("默认从轻量流程开始"), "SKILL.md must start with the lightweight workflow"],
-  [skill.includes("安全风险不因流程轻量而省略"), "SKILL.md must keep safety independent from complexity"],
-  [skill.includes("references/secret-safety.md"), "SKILL.md must route sensitive configuration"],
-  [skill.includes("不得开放公网"), "SKILL.md must include a public exposure gate"],
-  [recognition.includes("## 任务路径"), "project recognition must classify the user's task path"],
-  [recognition.includes("## 复杂度与风险"), "project recognition must assess complexity and risk separately"],
-  [strategies.includes("轻量流程") && strategies.includes("标准流程") && strategies.includes("增强流程"), "execution strategies must define all adaptive depths"],
-  [strategies.includes("只验证当前路线应有的结果"), "execution strategies must use route-specific verification"],
-  [security.includes("默认凭据"), "secret-safety must cover default credentials"],
-  [security.includes("开发到生产"), "secret-safety must cover production transition"],
-  [security.includes("安全风险与项目复杂度分开判断"), "secret-safety must override lightweight execution when needed"],
-  [artifacts.includes("## 对话交接简报"), "artifact contracts must require a conversational handoff"],
-  [artifacts.includes("轻量安装、导入、CLI"), "artifact contracts must avoid deployment records for lightweight tasks"],
-  [artifacts.includes("即使创建或修改了临时文件"), "temporary file changes must not force deployment records"],
-  [skill.includes("轻量任务默认不创建日志"), "lightweight tasks must not create deployment logs by default"],
+  [!skill.includes("当 Agent 收到 GitHub 仓库"), "SKILL trigger must require deployment or usage intent"],
+  [skill.includes("一个主要路线") && skill.includes("不通读全部 references"), "SKILL.md must enforce selective routing"],
+  [skill.includes("references/lightweight-routes.md") && skill.includes("references/service-routes.md"), "SKILL.md must expose both primary routes"],
+  [skill.includes("references/script-installer-handoff.md"), "SKILL.md must route script and panel handoff"],
+  [skill.includes("## 安全门"), "SKILL.md must keep global safety gates"],
+  [skill.includes("关键结果未验证时只能报告"), "SKILL.md must prevent premature success"],
+  [!skill.includes("空 bind mount"), "Docker implementation details must stay out of SKILL.md"],
+  [routing.includes("## 分类顺序") && routing.includes("## 深度判断") && routing.includes("完成标准"), "project routing must classify, size, and define completion"],
+  [routing.includes("只读取能够改变路线判断的文件"), "project routing must limit evidence loading"],
+  [routing.includes("0～3 个问题"), "project routing must not force unnecessary questions"],
+  [routing.includes("首轮唯一允许的受限写入"), "project routing must define the temporary clone exception"],
+  [skill.includes("不需要持续管理后台进程") && skill.includes("需要持续运行进程"), "primary routes must be separated by lifecycle"],
+  [lightweight.includes("需要长期托管时改走服务路线"), "lightweight route must defer managed services"],
+  [lightweight.includes("CLI") && lightweight.includes("MCP"), "lightweight route must cover direct and importable artifacts"],
+  [service.includes("## Docker / Compose"), "service route must own container guidance"],
+  [service.includes("空 bind mount"), "service route must protect image-seeded data"],
+  [service.includes("区分应用故障和验证探针错误"), "service route must distinguish probe defects"],
+  [scriptHandoff.includes("匹配真实部署方式"), "management commands must match the deployment mode"],
+  [scriptHandoff.includes("不承诺找回明文"), "hashed credentials must use reset instead of recovery"],
+  [scriptHandoff.includes("中文说明"), "management commands must include concise Chinese guidance"],
+  [scriptHandoff.includes("独立的两行") && scriptHandoff.includes("`docker restart <container>`") && scriptHandoff.includes("不静默省略"), "script handoff must use a complete, command-first format"],
+  [secrets.includes("固定默认凭据") && secrets.includes("安装器随机生成凭据"), "secret rules must distinguish credential origins"],
+  [secrets.includes("## 生产门"), "secret rules must cover production transition"],
+  [accessRules.includes("不能代替身份验证"), "hidden paths and ports must not replace authentication"],
+  [accessRules.includes("内网/元数据访问边界"), "high-cost network tools must define an outbound boundary"],
+  [webStack.includes("唯一权威入口"), "existing web stacks must retain one authoritative ingress"],
+  [webStack.includes("scripts/preflight.sh web-stack"), "web-stack preflight must use the repository script path"],
+  [webStack.includes("完成标准"), "web-stack coexistence must define completion"],
+  [artifacts.includes("## 对话交接"), "artifact rules must require conversational handoff"],
+  [artifacts.includes("同时满足以下条件"), "artifact rules must own the record trigger"],
+  [artifacts.includes("轻量安装、CLI、导入"), "lightweight tasks must avoid deployment records"],
+  [report.includes("## 访问与管理"), "deployment report must support panel handoff"],
+  [report.includes("不在本报告记录明文密码"), "deployment report must reject plaintext passwords"],
+  [report.includes("凭据来源") && report.includes("管理命令与中文说明"), "deployment report must record credential origin and operations"],
   [summary.includes("执行深度"), "project summary must record execution depth"],
-  [summary.includes("组件关系（如适用）"), "project summary must keep topology conditional"],
-  [report.includes("验证结果"), "deployment report must record verification outcomes"],
-  [report.includes("撤销或恢复方式"), "deployment report must record rollback or removal guidance"],
-  [report.includes("默认凭据处理状态"), "deployment report must record credential status"],
-  [readmeZh.includes("⚖️ **自适应深度**"), "Chinese README must describe adaptive depth"],
-  [readmeEn.includes("⚖️ **Adaptive depth**"), "English README must describe adaptive depth"],
+  [readmeZh.includes("只读取一个主要路线"), "Chinese README must describe selective routing"],
+  [readmeEn.includes("loads one primary route"), "English README must describe selective routing"],
   [readmeZh.includes("npx github:hajimi2024/lander-new"), "Chinese README must show the animated installer"],
   [readmeEn.includes("npx github:hajimi2024/lander-new"), "English README must show the animated installer"],
   [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
@@ -87,20 +115,33 @@ const assertions = [
   [readmeBadges.every((badge) => readmeZh.includes(badge)), "Chinese README must include the capability badges"],
   [readmeBadges.every((badge) => readmeEn.includes(badge)), "English README must include the capability badges"],
   [readmeZh.includes("README.en.md"), "Chinese README must link to English"],
-  [readmeEn.includes("README.md"), "English README must link to Chinese"]
+  [readmeEn.includes("README.md"), "English README must link to Chinese"],
+  [agentMetadata.includes('display_name: "lander-new"'), "Agent metadata must keep the lander-new identity"],
+  [agentMetadata.includes("/lander-new"), "Agent metadata must keep the public invocation"]
 ];
 
 for (const [condition, message] of assertions) {
   if (!condition) throw new Error(message);
 }
 
+for (const reference of referenceFiles.filter((path) => path.endsWith(".md"))) {
+  if (!skill.includes(`references/${reference}`)) {
+    throw new Error(`SKILL.md must directly expose reference: ${reference}`);
+  }
+}
+
 const publicText = [
   skill,
   readmeZh,
   readmeEn,
-  recognition,
-  strategies,
-  security,
+  agentMetadata,
+  routing,
+  lightweight,
+  service,
+  scriptHandoff,
+  secrets,
+  accessRules,
+  webStack,
   artifacts,
   summary,
   report
