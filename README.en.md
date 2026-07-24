@@ -4,7 +4,7 @@
 
 **Turn a GitHub repository into a runnable, deployable, or importable project through a controlled workflow**
 
-[简体中文](README.md) · [Install](#-install) · [Update](#-update) · [Usage](#-usage)
+[简体中文](README.md) · [Install](#-install) · [Update](#update) · [Usage](#-usage)
 
 </div>
 
@@ -114,6 +114,8 @@ The official Skills CLI decides which prompts are required for the current envir
 - **Method**: Symlink / Copy is prompted when multiple distinct install directories are involved; a single directory may use Copy directly.
 
 The exact interface therefore depends on the agents installed on the computer and the user's selections.
+
+<a id="update"></a>
 
 ## ♻️ Update
 

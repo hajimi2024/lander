@@ -4,7 +4,7 @@
 
 **把 GitHub 仓库稳定转化为可运行、可部署、可导入的项目**
 
-[English](README.en.md) · [安装](#-安装) · [更新](#-更新) · [使用方式](#-使用方式)
+[English](README.en.md) · [安装](#-安装) · [更新](#update) · [使用方式](#-使用方式)
 
 </div>
 
@@ -114,6 +114,8 @@ npx github:hajimi2024/lander-new
 - **Method**：多个不同安装目录需要分发时，询问 Symlink / Copy；单一目录时可能直接使用 Copy。
 
 因此，实际界面会随电脑上已安装的 Agent 和用户选择而变化。
+
+<a id="update"></a>
 
 ## ♻️ 更新
 
