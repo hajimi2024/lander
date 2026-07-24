@@ -119,13 +119,19 @@ npx github:hajimi2024/lander-new
 
 ## ♻️ 更新
 
-如果 GitHub 仓库中的 `lander-new` 有新版本，在终端执行：
+如果 GitHub 仓库中的 `lander-new` 有新版本，并且你之前按全局方式安装，在终端执行：
+
+```powershell
+npx skills@latest update lander-new -g
+```
+
+Skills CLI 会重新获取来源仓库，并更新本机已安装的 Skill 文件。更新后如果 Agent 没有立即发现新版本，请重启目标 Agent 或新建任务。
+
+如果你之前安装到某个项目目录，请进入该项目后执行：
 
 ```powershell
 npx skills@latest update lander-new
 ```
-
-未指定范围时，Skills CLI 会根据当前环境处理或询问 Project / Global。更新后如果 Agent 没有立即发现新版本，请重启目标 Agent 或新建任务。
 
 ## 💬 使用方式
 

@@ -119,13 +119,19 @@ The exact interface therefore depends on the agents installed on the computer an
 
 ## ♻️ Update
 
-When this repository has a newer version of `lander-new`, run:
+When this repository has a newer version of `lander-new` and you installed it globally, run:
+
+```powershell
+npx skills@latest update lander-new -g
+```
+
+Skills CLI fetches the source repository again and updates the installed Skill files on this computer. Restart the target agent or start a new task if the update is not discovered immediately.
+
+If you installed it into a project, run this from that project directory instead:
 
 ```powershell
 npx skills@latest update lander-new
 ```
-
-Without a fixed scope, Skills CLI resolves or prompts for Project / Global based on the current environment. Restart the target agent or start a new task if the update is not discovered immediately.
 
 ## 💬 Usage
 

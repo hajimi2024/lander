@@ -112,6 +112,8 @@ const assertions = [
   [!readmeEn.includes("installer first plays"), "English install section must not repeat the terminal banner"],
   [readmeZh.includes("## ♻️ 更新"), "Chinese README must use the recycling icon for updates"],
   [readmeEn.includes("## ♻️ Update"), "English README must use the recycling icon for updates"],
+  [readmeZh.includes("npx skills@latest update lander-new -g"), "Chinese README must show the global update command"],
+  [readmeEn.includes("npx skills@latest update lander-new -g"), "English README must show the global update command"],
   [readmeZh.includes("[更新](#update)") && readmeZh.includes('<a id="update"></a>'), "Chinese README update navigation must use a stable explicit anchor"],
   [readmeEn.includes("[Update](#update)") && readmeEn.includes('<a id="update"></a>'), "English README update navigation must use a stable explicit anchor"],
   [readmeBadges.every((badge) => readmeZh.includes(badge)), "Chinese README must include the capability badges"],

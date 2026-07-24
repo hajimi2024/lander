@@ -19,7 +19,7 @@ description: 帮助 Agent 识别 GitHub 项目的官方使用入口，并完成�
 - 默认从轻量深度开始。仓库规模不决定流程深度；秘密、公网、生产、高权限和现有服务冲突独立触发安全规则。
 - 在官方支持的路径中选择满足目标、依赖较少、操作稳定且风险较低的方式。直接使用已经满足目标时，不默认进入开发构建。
 - 使用用户当前语言回复，命令、代码、路径和项目名称保留原文。
-- 安装、更新或移除 `lander-new` 本身时，回答 Skills CLI 维护命令，不进入项目部署流程。
+- 安装、更新或移除 `lander-new` 本身时，回答 Skills CLI 维护命令，不进入项目部署流程。全局更新使用 `npx skills@latest update lander-new -g`；项目级更新在项目目录执行 `npx skills@latest update lander-new`。
 
 ## 选择主要路线
 
