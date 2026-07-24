@@ -55,6 +55,17 @@ const readmeBanner = `${BANNER.map((line) => line.trimEnd()).join("\n")}
 
 ${DIVIDER}
 ${TAGLINE}`;
+const extractReadmeBanner = (markdown) => {
+  const match = markdown.match(/<pre><code>\n([\s\S]*?)\n<\/code><\/pre>/);
+  if (!match) return "";
+
+  return match[1]
+    .split("\n")
+    .map((line) => line.trimStart().trimEnd())
+    .join("\n");
+};
+const readmeBannerZh = extractReadmeBanner(readmeZh);
+const readmeBannerEn = extractReadmeBanner(readmeEn);
 const readmeBadges = [
   "lander-Agent_Skill-d1008f",
   "GitHub-Repository_Analysis-168aad",
@@ -112,8 +123,8 @@ const assertions = [
   [readmeEn.includes("first round is shallow recognition only") && readmeEn.includes("asks whether to continue into installation or deployment"), "English README must describe shallow first-round confirmation"],
   [readmeZh.includes("npx github:hajimi2024/lander"), "Chinese README must show the animated installer"],
   [readmeEn.includes("npx github:hajimi2024/lander"), "English README must show the animated installer"],
-  [readmeZh.includes(readmeBanner), "Chinese README banner must match the installer"],
-  [readmeEn.includes(readmeBanner), "English README banner must match the installer"],
+  [readmeBannerZh === readmeBanner, "Chinese README banner must match the installer after display indentation is removed"],
+  [readmeBannerEn === readmeBanner, "English README banner must match the installer after display indentation is removed"],
   [!readmeZh.includes("安装器会先播放"), "Chinese install section must not repeat the terminal banner"],
   [!readmeEn.includes("installer first plays"), "English install section must not repeat the terminal banner"],
   [readmeZh.includes("## ♻️ 更新"), "Chinese README must use the recycling icon for updates"],
