@@ -135,25 +135,19 @@ npx skills@latest update lander-new
 
 ## 💬 Usage
 
-Invoke it explicitly:
+Use natural language; there is no fixed sentence you need to memorize. Put a GitHub repository, product website, or official docs page after `/lander-new`:
 
 ```text
-/lander-new analyze and deploy https://github.com/owner/repository
+/lander-new https://github.com/owner/repository
 ```
-
-Identify and plan only:
 
 ```text
-/lander-new inspect https://github.com/owner/repository. First round only: analyze and do not modify the environment.
+/lander-new https://project.example.com
 ```
 
-Deploy to a VPS with a read-only preflight:
+The first round is shallow recognition only: it explains what the project does, the official entrypoint, the recommended route, the suggested environment, and visible risks, then asks whether to continue into installation or deployment. Even when the first request asks for deployment, `lander-new` completes this confirmation round before execution.
 
-```text
-/lander-new deploy https://github.com/owner/repository to my VPS and run a read-only preflight first.
-```
-
-Natural language also works. For tasks involving GitHub project assessment, installation, deployment, verification, or import, an agent can select `lander-new` from its Skill description.
+You can also skip the explicit command and describe the goal naturally. For tasks involving GitHub project assessment, installation, deployment, verification, or import, an agent can select `lander-new` from its Skill description.
 
 ## 🛡️ Safety Boundaries
 

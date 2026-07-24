@@ -4,7 +4,7 @@
 
 ## 最小资料扫描
 
-先读取 README、安装或快速开始章节，以及 README 指向的必要官方 docs。按目标检查配置样例、包管理清单、Release、Compose、Dockerfile 或安装器定义；只读取能够改变路线判断的文件。
+先读取 README、安装或快速开始章节，以及 README 指向的必要官方 docs。官网或 docs 入口先确认官方仓库、官方安装资料或明确维护方证据。按目标检查配置样例、包管理清单、Release、Compose、Dockerfile 或安装器定义；只读取能够改变路线判断的文件。
 
 特别留意 Configuration、Security、Production、Authentication、First Run、Default Credentials、Environment Variables、Maintenance Status、Upgrade 和 Migration。
 
@@ -33,10 +33,14 @@ Dockerfile 和 Compose 只是证据。官方同时提供直接使用和开发方
 简洁说明：
 
 - 项目类型与用途；
+- 项目一句话介绍；
 - 用户目标；
 - 官方入口与建议的主要路线；
+- 适合的运行或部署方式；
+- 建议环境或配置级别；
 - 执行深度；
 - 已发现的风险类型及证据位置；
+- 是否继续进入安装或部署阶段；
 - 当前必需的 0～3 个问题；证据足够时不为形式而提问。
 
 只有多条路线都能满足目标时才比较取舍，只有多组件项目才列组件关系。到此停止，不执行、不创建部署记录。

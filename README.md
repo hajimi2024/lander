@@ -135,25 +135,19 @@ npx skills@latest update lander-new
 
 ## 💬 使用方式
 
-显式调用：
+使用自然语言即可，不需要记固定句式。`/lander-new` 后面可以直接跟 GitHub 仓库、产品官网或官方文档页：
 
 ```text
-/lander-new 分析并部署 https://github.com/owner/repository
+/lander-new https://github.com/owner/repository
 ```
-
-只做识别和规划：
 
 ```text
-/lander-new 检查 https://github.com/owner/repository，第一轮只分析，不修改环境。
+/lander-new https://project.example.com
 ```
 
-部署到 VPS，并先做只读检查：
+第一轮只做浅层识别：说明项目用途、官方入口、建议路线、建议环境和风险点，然后询问是否继续安装或部署。即使你第一句话已经要求部署，`lander-new` 也会先完成这一轮确认，再进入后续执行。
 
-```text
-/lander-new 将 https://github.com/owner/repository 部署到我的 VPS，并先执行只读环境检查。
-```
-
-也可以直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander-new`。
+也可以不用显式命令，直接用自然语言描述需求。只要任务涉及 GitHub 项目的识别、安装、部署、验证或导入，Agent 可以根据 Skill 描述选择 `lander-new`。
 
 ## 🛡️ 安全边界
 
